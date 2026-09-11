@@ -1,0 +1,12 @@
+{
+  "name":"OSAKA Happy Journey",
+  "short_name":"OSAKA Trip",
+  "start_url":"./index.html",
+  "display":"standalone",
+  "background_color":"#f7f6f3",
+  "theme_color":"#d81324",
+  "icons":[
+    {"src":"icon-192.png","sizes":"192x192","type":"image/png"},
+    {"src":"icon-512.png","sizes":"512x512","type":"image/png"}
+  ]
+}
