@@ -127,7 +127,53 @@ const PHRASES=[
  ['ช่วยเหลือ','英語を話せますか？','Eigo o hanasemasu ka?','พูดภาษาอังกฤษได้ไหมครับ/คะ'],['ช่วยเหลือ','写真を撮ってもらえますか？','Shashin o totte moraemasu ka?','ช่วยถ่ายรูปให้หน่อยได้ไหมครับ/คะ'],['ช่วยเหลือ','トイレはどこですか？','Toire wa doko desu ka?','ห้องน้ำอยู่ที่ไหนครับ/คะ']
 ];
 function renderPhrase(){const cats=[...new Set(PHRASES.map(x=>x[0]))];$('#phraseView').innerHTML=`<div class="section-head"><div><h2>Japanese Phrasebook あ</h2><p>แตะ 🔊 เพื่อให้มือถืออ่านภาษาญี่ปุ่น</p></div></div>${cats.map(c=>`<div class="section-head"><div><h3>${c}</h3></div></div><div class="phrase-grid">${PHRASES.filter(x=>x[0]===c).map(([,jp,ro,th])=>`<div class="card phrase"><div><div class="jp-big">${jp}</div><div class="roman">${ro}</div><div class="th">${th}</div></div><button class="speak" data-jp="${jp}" aria-label="อ่านออกเสียง">🔊</button></div>`).join('')}</div>`).join('')}`;$$('.speak').forEach(b=>b.onclick=()=>speakJP(b.dataset.jp))}
-function speakJP(text){if(!('speechSynthesis'in window)){alert('อุปกรณ์นี้ไม่รองรับการอ่านออกเสียง');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=.82;speechSynthesis.speak(u)}
+let JP_VOICE=null;
+function pickJapaneseVoice(){
+ if(!('speechSynthesis' in window)) return null;
+ const voices=window.speechSynthesis.getVoices();
+ JP_VOICE=voices.find(v=>String(v.lang||'').toLowerCase()==='ja-jp') || voices.find(v=>String(v.lang||'').toLowerCase().startsWith('ja')) || null;
+ return JP_VOICE;
+}
+if('speechSynthesis' in window){
+ pickJapaneseVoice();
+ window.speechSynthesis.addEventListener?.('voiceschanged',pickJapaneseVoice);
+}
+function speakJP(text){
+ if(!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance==='undefined'){
+   alert('เบราว์เซอร์นี้ไม่รองรับเสียงพูด กรุณาเปิดด้วย Safari หรือ Chrome');
+   return;
+ }
+ const synth=window.speechSynthesis;
+ const doSpeak=()=>{
+   try{
+     synth.cancel();
+     if(synth.paused) synth.resume();
+     const u=new SpeechSynthesisUtterance(text);
+     u.lang='ja-JP';
+     u.rate=0.82;
+     u.pitch=1;
+     u.volume=1;
+     const voice=pickJapaneseVoice();
+     if(voice) u.voice=voice;
+     u.onerror=(e)=>{
+       console.warn('Japanese TTS error:',e.error,e);
+       if(e.error && e.error!=='canceled' && e.error!=='interrupted'){
+         alert('เปิดเสียงญี่ปุ่นไม่ได้ในเครื่องนี้ กรุณาตรวจว่าเครื่องมีเสียง/ภาษา Japanese แล้วลองใหม่');
+       }
+     };
+     setTimeout(()=>{ synth.resume(); synth.speak(u); },80);
+   }catch(err){
+     console.error(err);
+     alert('เปิดเสียงไม่ได้ กรุณาลองเปิดเว็บด้วย Safari/Chrome แล้วกดใหม่');
+   }
+ };
+ // Some mobile browsers load voices only after the first user gesture.
+ if(synth.getVoices().length===0){
+   setTimeout(doSpeak,120);
+ } else {
+   doSpeak();
+ }
+}
 function renderMore(){
  $('#moreView').innerHTML=`<div class="section-head"><div><h2>More</h2><p>Hotel, food notes และข้อมูลใช้จริง</p></div></div>
  <div class="cards">
