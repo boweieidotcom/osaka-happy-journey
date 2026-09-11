@@ -10,3 +10,9 @@ V3 adds:
 - Free Day planner, Saved Spots, Near My Plan, Export / Import retained from V2
 
 Important: restaurant opening hours, prices and status can change. Re-check Google Maps / official restaurant pages on the travel day. Hotel routing stays provisional until the tour company confirms the final hotel.
+
+
+## V3.1 hotfix
+- Fixed Free Day rendering crash caused by curated recommendation data shape mismatch.
+- Saved Spots and Japanese Phrasebook now render normally after Free Day.
+- Bumped PWA cache to osaka-happy-v3-1.

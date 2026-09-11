@@ -1,4 +1,4 @@
-const CACHE='osaka-happy-v3';
+const CACHE='osaka-happy-v3-1';
 const FILES=['./','./index.html','./styles.css','./app.js','./data.json','./manifest.webmanifest','./icon-192.png','./icon-512.png','./images/kyoto.svg','./images/kamikochi.svg','./images/shirakawa.svg','./images/osaka.svg','./images/kuromon.svg','./images/food.svg'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES))));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
