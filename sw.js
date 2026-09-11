@@ -1,4 +1,4 @@
-const CACHE='osaka-happy-v4.4.1-final-20260911';
+const CACHE='osaka-happy-v4.4.2-fav-stable-20260911';
 const CORE=[
   './','./index.html','./styles.css','./app.js','./supabase-config.js','./data.json','./manifest.webmanifest','./icon-192.png','./icon-512.png',
   './images/osaka.svg','./images/food.svg','./images/kuromon.svg','./images/kyoto.svg','./images/kamikochi.svg','./images/shirakawa.svg',

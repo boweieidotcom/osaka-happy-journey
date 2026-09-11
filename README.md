@@ -8,3 +8,6 @@
 - Trip page intentionally has no weather cards
 
 Upload all files in this folder to the repository root. No new Supabase SQL is required if V4.3.3 setup already succeeded.
+
+
+V4.4.2: Favorite is offline-first with a persistent pending sync queue, so stars remain saved locally even if Supabase/network is temporarily unavailable.

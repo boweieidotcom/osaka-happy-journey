@@ -268,6 +268,14 @@ renderAll=function(){renderHome();loadHomeWeather();renderTrip();renderFree();re
 // ===== V4.3 Shared Trip Sync — no accounts / no member split =====
 let SB=null, CLOUD_READY=false, SYNC_TRIP_ID=null, CLOUD_FAVS=new Set(), CLOUD_PLAN=null, syncPollTimer=null;
 const SHARED_CODE_KEY='osakaSharedTripCode';
+const FAV_LOCAL_KEY='osakaFavs';
+const FAV_PENDING_KEY='osakaFavPendingV442';
+const FAV_MIGRATED_KEY='osakaFavCloudMigratedV442';
+function readLocalFavs(){try{return new Set(JSON.parse(localStorage.getItem(FAV_LOCAL_KEY)||'[]'))}catch{return new Set()}}
+function writeLocalFavs(set){localStorage.setItem(FAV_LOCAL_KEY,JSON.stringify([...set]))}
+function readPendingFavs(){try{const x=JSON.parse(localStorage.getItem(FAV_PENDING_KEY)||'{}');return x&&typeof x==='object'?x:{}}catch{return {}}}
+function writePendingFavs(obj){if(Object.keys(obj).length)localStorage.setItem(FAV_PENDING_KEY,JSON.stringify(obj));else localStorage.removeItem(FAV_PENDING_KEY)}
+function queueFavOp(name,add){const p=readPendingFavs();p[name]=!!add;writePendingFavs(p)}
 function setSyncState(text){const el=document.getElementById('syncState');if(el)el.textContent=text;}
 function getSharedCode(){return localStorage.getItem(SHARED_CODE_KEY)||'';}
 function setSharedCode(code){code=String(code||'').trim().toLowerCase(); if(code)localStorage.setItem(SHARED_CODE_KEY,code); else localStorage.removeItem(SHARED_CODE_KEY); return code;}
@@ -293,11 +301,41 @@ async function connectSharedTrip(code,showAlert=true){
   return true;
 }
 function disconnectSharedTrip(){setSharedCode('');SYNC_TRIP_ID=null;CLOUD_FAVS=new Set();CLOUD_PLAN=null;if(syncPollTimer){clearInterval(syncPollTimer);syncPollTimer=null;}renderAll();}
+async function flushPendingFavorites(){
+  if(!SB||!SYNC_TRIP_ID)return false;
+  const pending=readPendingFavs();
+  const names=Object.keys(pending);
+  if(!names.length)return true;
+  let ok=true;
+  for(const name of names){
+    const {error}=await SB.rpc('shared_set_favorite',{p_code:getSharedCode(),p_spot_id:name,p_add:!!pending[name]});
+    if(error){console.error('favorite sync',name,error);ok=false;continue;}
+    const latest=readPendingFavs();
+    if(Object.prototype.hasOwnProperty.call(latest,name) && latest[name]===pending[name]){delete latest[name];writePendingFavs(latest);}
+  }
+  return ok;
+}
 async function loadCloudFavorites(){
   if(!SB||!SYNC_TRIP_ID)return;
+  await flushPendingFavorites();
   const {data,error}=await SB.rpc('shared_get_favorites',{p_code:getSharedCode()});
-  if(error){console.error(error);setSyncState('⚠️ Sync failed');return;}
-  CLOUD_FAVS=new Set((data||[]).map(x=>x.spot_id)); localStorage.setItem('osakaFavs',JSON.stringify([...CLOUD_FAVS]));
+  if(error){console.error(error);setSyncState('⚠️ Sync failed — ใช้ Favorite ในเครื่องต่อ');CLOUD_FAVS=readLocalFavs();return;}
+  let cloud=new Set((data||[]).map(x=>x.spot_id));
+  const local=readLocalFavs();
+  // One-time migration: preserve favorites created by older versions before the durable queue existed.
+  if(!localStorage.getItem(FAV_MIGRATED_KEY) && local.size){
+    for(const name of local){
+      if(!cloud.has(name)){
+        const {error:e}=await SB.rpc('shared_set_favorite',{p_code:getSharedCode(),p_spot_id:name,p_add:true});
+        if(!e)cloud.add(name);
+      }
+    }
+    localStorage.setItem(FAV_MIGRATED_KEY,'1');
+  }
+  // Apply any still-pending local actions over the cloud snapshot so a flaky network never makes stars disappear.
+  const pending=readPendingFavs();
+  for(const [name,add] of Object.entries(pending)){add?cloud.add(name):cloud.delete(name)}
+  CLOUD_FAVS=new Set(cloud); writeLocalFavs(cloud);
 }
 async function loadCloudPlan(){
   if(!SB||!SYNC_TRIP_ID)return;
@@ -317,12 +355,14 @@ function startSyncPolling(){
   if(syncPollTimer)clearInterval(syncPollTimer);
   syncPollTimer=setInterval(async()=>{if(!document.hidden&&SYNC_TRIP_ID){await Promise.all([loadCloudFavorites(),loadCloudPlan()]);renderSavedV4();renderFree();}},12000);
 }
-function favs(){if(CLOUD_READY&&SYNC_TRIP_ID)return new Set(CLOUD_FAVS);try{return new Set(JSON.parse(localStorage.getItem('osakaFavs')||'[]'))}catch{return new Set()}}
+function favs(){return readLocalFavs()}
 async function toggleFav(name){
-  const f=favs(),adding=!f.has(name);adding?f.add(name):f.delete(name);CLOUD_FAVS=new Set(f);localStorage.setItem('osakaFavs',JSON.stringify([...f]));renderSavedV4();if(document.querySelector('#mapView.active'))renderMapV4();
+  const f=readLocalFavs(),adding=!f.has(name);adding?f.add(name):f.delete(name);writeLocalFavs(f);CLOUD_FAVS=new Set(f);queueFavOp(name,adding);renderSavedV4();
   if(CLOUD_READY&&SYNC_TRIP_ID){
-    setSyncState('☁️ Syncing…');const {error}=await SB.rpc('shared_set_favorite',{p_code:getSharedCode(),p_spot_id:name,p_add:adding});
-    if(error){console.error(error);setSyncState('⚠️ Sync failed');await loadCloudFavorites();renderSavedV4();}else setSyncState('☁️ Synced');
+    setSyncState('☁️ Syncing…');
+    const ok=await flushPendingFavorites();
+    if(ok){setSyncState('☁️ Synced');await loadCloudFavorites();renderSavedV4();}
+    else setSyncState('⚠️ ยังไม่ส่งขึ้น Cloud — เก็บไว้ในเครื่องและจะลองใหม่อัตโนมัติ');
   }
 }
 function bindFavs(){document.querySelectorAll('[data-fav]').forEach(b=>b.onclick=()=>toggleFav(b.dataset.fav))}
@@ -337,7 +377,7 @@ function renderCloudPanel(){
   const holder=$('#cloudPanel');if(!holder)return;
   if(!SB){holder.innerHTML='<div class="card">Supabase ยังไม่พร้อม</div>';return;}
   if(!SYNC_TRIP_ID){holder.innerHTML=`<div class="section-head"><div><h2>☁️ Shared Sync</h2><p>ไม่ต้องสมัครสมาชิก • ใช้ Trip Code เดียวกัน 2 เครื่อง</p></div></div><div class="card"><label>Trip Code<input id="tripCode" autocomplete="off" placeholder="ใส่รหัสทริปส่วนตัว"></label><div class="actions"><button id="connectTrip" class="btn red">Connect</button></div><p class="small-muted">ใครที่รู้รหัสนี้จะเข้าถึง Favorite และ Free Day Plan ชุดเดียวกันได้ อย่าแชร์รหัสสาธารณะ</p><div id="syncState"></div></div>`;$('#connectTrip').onclick=()=>connectSharedTrip($('#tripCode').value);return;}
-  holder.innerHTML=`<div class="section-head"><div><h2>☁️ Shared Sync</h2><p>Favorite + Free Day ใช้ข้อมูลชุดเดียวกัน</p></div><span class="badge">Connected</span></div><div class="card"><p><b>OSAKA Happy Journey</b></p><p id="syncState">☁️ Synced</p><p class="small-muted">สองเครื่องใช้ Trip Code เดียวกัน • ระบบตรวจข้อมูลใหม่อัตโนมัติประมาณทุก 12 วินาที</p><div class="actions"><button id="forceSync" class="btn red">↻ Sync now</button><button id="disconnectTrip" class="btn outline">Disconnect</button></div></div>`;
+  holder.innerHTML=`<div class="section-head"><div><h2>☁️ Shared Sync</h2><p>Favorite + Free Day ใช้ข้อมูลชุดเดียวกัน</p></div><span class="badge">Connected</span></div><div class="card"><p><b>OSAKA Happy Journey</b></p><p id="syncState">☁️ Synced</p><p class="small-muted">สองเครื่องใช้ Trip Code เดียวกัน • Favorite จะจำในเครื่องทันที และส่งขึ้น Cloud อัตโนมัติ • ตรวจข้อมูลใหม่ประมาณทุก 12 วินาที</p><div class="actions"><button id="forceSync" class="btn red">↻ Sync now</button><button id="disconnectTrip" class="btn outline">Disconnect</button></div></div>`;
   $('#forceSync').onclick=async()=>{setSyncState('กำลัง Sync…');await Promise.all([loadCloudFavorites(),loadCloudPlan()]);renderAll();setSyncState('☁️ Synced');};$('#disconnectTrip').onclick=disconnectSharedTrip;
 }
 
@@ -414,10 +454,12 @@ renderTrip=function(){
 
 // Map page was intentionally removed in V4.4. Keep Google Maps buttons only.
 toggleFav=async function(name){
-  const f=favs(),adding=!f.has(name);adding?f.add(name):f.delete(name);CLOUD_FAVS=new Set(f);localStorage.setItem('osakaFavs',JSON.stringify([...f]));renderSavedV4();
+  const f=readLocalFavs(),adding=!f.has(name);adding?f.add(name):f.delete(name);writeLocalFavs(f);CLOUD_FAVS=new Set(f);queueFavOp(name,adding);renderSavedV4();
   if(CLOUD_READY&&SYNC_TRIP_ID){
-    setSyncState('☁️ Syncing…');const {error}=await SB.rpc('shared_set_favorite',{p_code:getSharedCode(),p_spot_id:name,p_add:adding});
-    if(error){console.error(error);setSyncState('⚠️ Sync failed');await loadCloudFavorites();renderSavedV4();}else setSyncState('☁️ Synced');
+    setSyncState('☁️ Syncing…');
+    const ok=await flushPendingFavorites();
+    if(ok){setSyncState('☁️ Synced');await loadCloudFavorites();renderSavedV4();}
+    else setSyncState('⚠️ ยังไม่ส่งขึ้น Cloud — เก็บไว้ในเครื่องและจะลองใหม่อัตโนมัติ');
   }
 };
 
