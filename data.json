@@ -1,0 +1,1179 @@
+{
+  "spots": [
+    {
+      "name": "HARBS in Hankyu Sanban Gai",
+      "city": "Osaka",
+      "zone": "Osaka – Umeda / Nakanoshima",
+      "type": "Cafe / Sweets",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/HARBS+in+Hankyu+Sanban+Gai/data=!4m2!3m1!1s0x6000e692107a6b63:0x3943875729b59c9d",
+      "note": "",
+      "zone_display": "Umeda / Nakanoshima",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "HARBS Diamor Osaka",
+      "city": "Osaka",
+      "zone": "Osaka – Umeda / Nakanoshima",
+      "type": "Cafe / Sweets",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/HARBS+Diamor+Osaka/data=!4m2!3m1!1s0x6000e6f354f1f581:0x37de3f5d12a1b86f",
+      "note": "",
+      "zone_display": "Umeda / Nakanoshima",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "株式会社 a piece of cake【本社】",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Cafe / Sweets",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE+a+piece+of+cake%E3%80%90%E6%9C%AC%E7%A4%BE%E3%80%91/data=!4m2!3m1!1s0x6000ee082ddb6137:0xd0ad98c811f86da2",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "PIECE OF CAKE(ピースオブケイク)",
+      "city": "Other Japan",
+      "zone": "Other Japan",
+      "type": "Cafe / Sweets",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/PIECE+OF+CAKE(%E3%83%94%E3%83%BC%E3%82%B9%E3%82%AA%E3%83%96%E3%82%B1%E3%82%A4%E3%82%AF)/data=!4m2!3m1!1s0x6007350048831cd5:0xeb573b1c9da426e1",
+      "note": "",
+      "zone_display": "ญี่ปุ่นอื่น ๆ",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Kakuozan Fruit Daifuku Benzaiten",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Cafe / Sweets",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Kakuozan+Fruit+Daifuku+Benzaiten/data=!4m2!3m1!1s0x6000e70dc92e5667:0x9df71c104bc0f3b2",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Kakuozan Fruit Daifuku Benzaiten",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Cafe / Sweets",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Kakuozan+Fruit+Daifuku+Benzaiten/data=!4m2!3m1!1s0x6000e7cd11d5d03b:0x75c8da425d383160",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Lord Stow’s Bakery (Ken’s Papa Marron)",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Cafe / Sweets",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Lord+Stow%E2%80%99s+Bakery+(Ken%E2%80%99s+Papa+Marron)/data=!4m2!3m1!1s0x6000e74ca2f32fe1:0xb3c482e7d48895b",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Sakimoto Bakery",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Cafe / Sweets",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Sakimoto+Bakery/data=!4m2!3m1!1s0x6000e7c1c3ab750d:0x1906e543ac966d27",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Isomaru Suisan Namba Nankai-dori",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Isomaru+Suisan+Namba+Nankai-dori/data=!4m2!3m1!1s0x6000e76b0622b34b:0x17c18f581dd3fab2",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Isomaru Suisan Dotombori",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Isomaru+Suisan+Dotombori/data=!4m2!3m1!1s0x6000e714e9312253:0x9fa3a5b8872a26c2",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "茶屋 しずく CHA-YA SHIZUKU",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Cafe / Sweets",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/%E8%8C%B6%E5%B1%8B+%E3%81%97%E3%81%9A%E3%81%8F+CHA-YA+SHIZUKU/data=!4m2!3m1!1s0x6000e76ffd4b9021:0xcd21d602f102c751",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Maguroya Kurogin Kuromon",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Maguroya+Kurogin+Kuromon/data=!4m2!3m1!1s0x6000e7421d5f0725:0x8cb92673a969b2a9",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Kushikatsu Daruma - Namba Main Shop",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Kushikatsu+Daruma+-+Namba+Main+Shop/data=!4m2!3m1!1s0x6000e714a3285def:0x7c7e7c35a907c927",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Kushikatsu Daruma - Shinsaibashi",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Kushikatsu+Daruma+-+Shinsaibashi/data=!4m2!3m1!1s0x6000e7114a753995:0xbd7d707691c7b999",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Ramen Makotoya Asahiikue branch",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Ramen+Makotoya+Asahiikue+branch/data=!4m2!3m1!1s0x6000e11a911d5943:0x3fc7e0626900b856",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Ramen Makotoya Shinsaibashi",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Ramen+Makotoya+Shinsaibashi/data=!4m2!3m1!1s0x6000e713e420ed69:0x7888409870774d0c",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Yakiniku Matsumoto Bettei",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Yakiniku+Matsumoto+Bettei/data=!4m2!3m1!1s0x6000e5f7feaeb241:0x23fecd2fb7f40376",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Tsurutontan Soemoncho",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Tsurutontan+Soemoncho/data=!4m2!3m1!1s0x6000e7155a4f1d9f:0xae5bcc7655d2b0dd",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Mugito Mensuke",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Mugito+Mensuke/data=!4m2!3m1!1s0x6000e752482fe285:0x2d817059fe23d5ea",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Wagyu IDATEN",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Wagyu+IDATEN/data=!4m2!3m1!1s0x6000e71ca017d017:0x44507f2227fee48b",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Dekasan",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Dekasan/data=!4m2!3m1!1s0x6000e71299d3a087:0x5b2999d4b998d873",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Miyamoto Munashi Nipponbashi 3 Chome",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Miyamoto+Munashi+Nipponbashi+3+Chome/data=!4m2!3m1!1s0x6000e769eff1a8c3:0xe52aeee5b7b37bd5",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Kushikatsu Hyotan",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Kushikatsu+Hyotan/data=!4m2!3m1!1s0x6000e76baa421d71:0xb559375276a61b",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Okonomiyaki Okaru",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Okonomiyaki+Okaru/data=!4m2!3m1!1s0x6000e714d28648a5:0xabe433c3fe4677b9",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "MUGUNI",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/MUGUNI/data=!4m2!3m1!1s0x6000e71177dff585:0xe16bf3da580d7634",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Onigiri Gorichan",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Onigiri+Gorichan/data=!4m2!3m1!1s0x6000e786af0c2635:0xf6df71cb602582b1",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Onigiri Gorichan Nankai Namba Station",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Onigiri+Gorichan+Nankai+Namba+Station/data=!4m2!3m1!1s0x6000e79cecc31203:0x6667d17847df6316",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Onigiri Gorichan",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Onigiri+Gorichan/data=!4m2!3m1!1s0x6000e74506766bdd:0x49304f9852e856a8",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Hozenji Yokocho",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Hozenji+Yokocho/data=!4m2!3m1!1s0x6000e714c5508663:0x1aee0e0c59df68d2",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Hatoya Asakusa",
+      "city": "Tokyo",
+      "zone": "Tokyo",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Hatoya+Asakusa/data=!4m2!3m1!1s0x60188d4d2096709d:0xa3f29d92f6ae1181",
+      "note": "",
+      "zone_display": "Tokyo",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Sano Seicha",
+      "city": "Fuji area",
+      "zone": "Fuji area",
+      "type": "Cafe / Sweets",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Sano+Seicha/data=!4m2!3m1!1s0x601bd383c2b81157:0xe6a4ccbfe9edf2c3",
+      "note": "",
+      "zone_display": "Fuji / Kawaguchiko",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "月盗",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/%E6%9C%88%E7%9B%97/data=!4m2!3m1!1s0x6000e7006544841d:0x2e8c3c8c8094a117",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Matsuya Keihan Kyobashi",
+      "city": "Osaka",
+      "zone": "Osaka – Central / Kyobashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Matsuya+Keihan+Kyobashi/data=!4m2!3m1!1s0x6000e0d7cc3ace7b:0xf6b09608990bf566",
+      "note": "",
+      "zone_display": "Osaka Castle / Kyobashi",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Matsuya",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Matsuya/data=!4m2!3m1!1s0x6000e76b71fdf19d:0x958caecfdd02d3c5",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Matsuya Osaka Honmachi",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Matsuya+Osaka+Honmachi/data=!4m2!3m1!1s0x6000e71e87bdddb5:0xe7f0bfa8f59c361d",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Budo-tei",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Budo-tei/data=!4m2!3m1!1s0x6000e72c73f306cd:0x7e69f6c65b533d6",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Fukutaro Honten",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Fukutaro+Honten/data=!4m2!3m1!1s0x6000e76a57830771:0xb317936fab556b3",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Kuromon Market",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Kuromon+Market/data=!4m2!3m1!1s0x6000e741e541225d:0xac1d2c78be23c141",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Tsutenkaku",
+      "city": "Osaka",
+      "zone": "Osaka – Shinsekai",
+      "type": "Attraction / Shopping",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Tsutenkaku/data=!4m2!3m1!1s0x6000e76077e042ff:0xe5cbcf56def44557",
+      "note": "",
+      "zone_display": "Shinsekai",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Aeon Mall Sakai Teppocho",
+      "city": "Osaka",
+      "zone": "Osaka – Sakai",
+      "type": "Attraction / Shopping",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Aeon+Mall+Sakai+Teppocho/data=!4m2!3m1!1s0x6000dcf0f6fb6d4d:0x9d39037f2b6e478e",
+      "note": "",
+      "zone_display": "Sakai",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "grenier Umeda branch",
+      "city": "Osaka",
+      "zone": "Osaka – Umeda / Nakanoshima",
+      "type": "Cafe / Sweets",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/grenier+Umeda+branch/data=!4m2!3m1!1s0x6000e75d1aa06ba7:0x43cb95ce44fe58c7",
+      "note": "",
+      "zone_display": "Umeda / Nakanoshima",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Taishu Sukiyaki Hokuto GEMS Namba Branch",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Taishu+Sukiyaki+Hokuto+GEMS+Namba+Branch/data=!4m2!3m1!1s0x6000e78e88cf6963:0x13fe79ad645b20be",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Oosaka Tonkatsu Dotonbori Main Store",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Oosaka+Tonkatsu+Dotonbori+Main+Store/data=!4m2!3m1!1s0x6000e73f41abf7b1:0x4d411e1dd6a99638",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Unagi Kushiyaki Izumo",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Unagi+Kushiyaki+Izumo/data=!4m2!3m1!1s0x6000e751d3b56205:0xeb34d2134f7e06f3",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Menya Takei in Kintetsu Kyoto Station",
+      "city": "Kyoto",
+      "zone": "Kyoto",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Menya+Takei+in+Kintetsu+Kyoto+Station/data=!4m2!3m1!1s0x600109a8cd5545b9:0x9de712e71b0fbaec",
+      "note": "",
+      "zone_display": "Kyoto",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Shabu Shabu Onyasai Dotonbori",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Shabu+Shabu+Onyasai+Dotonbori/data=!4m2!3m1!1s0x6000e714797aaaab:0xbb1e1cbbb2319cd8",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Cheese Tart Pablo Shinsaibashi",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Cafe / Sweets",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Cheese+Tart+Pablo+Shinsaibashi/data=!4m2!3m1!1s0x6000e71149a56dcb:0xc9ad1276fd06953a",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Osaka Kizu Wholesale Market",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Osaka+Kizu+Wholesale+Market/data=!4m2!3m1!1s0x6000e765b6c38a31:0x2cf1c0e49f17778d",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Kushikatsu Daruma - Dotombori",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Kushikatsu+Daruma+-+Dotombori/data=!4m2!3m1!1s0x6000e714edc587d9:0xb73f2b88240b02bf",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Dogyan",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Dogyan/data=!4m2!3m1!1s0x6000e730bf572cbb:0x5dccf7dca14244b5",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Kyu Yamutei Karahori",
+      "city": "Osaka",
+      "zone": "Osaka – Karahori",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Kyu+Yamutei+Karahori/data=!4m2!3m1!1s0x6000e7381a0490fd:0xf0f50c36de4f7a66",
+      "note": "",
+      "zone_display": "Karahori",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Karahori Toundo",
+      "city": "Osaka",
+      "zone": "Osaka – Karahori",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Karahori+Toundo/data=!4m2!3m1!1s0x6000e738145620d7:0x8446c2dd4ebda86c",
+      "note": "",
+      "zone_display": "Karahori",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Karahori Shopping Street",
+      "city": "Osaka",
+      "zone": "Osaka – Karahori",
+      "type": "Attraction / Shopping",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Karahori+Shopping+Street/data=!4m2!3m1!1s0x6000e7608c8cf0d5:0x8a8b5cdeab1a30b",
+      "note": "",
+      "zone_display": "Karahori",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Melon Bread",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Cafe / Sweets",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Melon+Bread/data=!4m2!3m1!1s0x6000e7b34d0b98ed:0xecdeace80990f512",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Takoyaki Juhachiban Dotonbori",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Takoyaki+Juhachiban+Dotonbori/data=!4m2!3m1!1s0x6000e71493c00001:0xcc6a0e2206c0cb6d",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Zen Namba Sennichimae",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Zen+Namba+Sennichimae/data=!4m2!3m1!1s0x6000e714aa6cfe23:0x1b8d0041275162ba",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Tempura Makino Namba",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Tempura+Makino+Namba/data=!4m2!3m1!1s0x6000e76b551d991b:0xd2ff746bbe1c1204",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Gyukatsu Motomura Namba Branch",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Food / Restaurant",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Gyukatsu+Motomura+Namba+Branch/data=!4m2!3m1!1s0x6000e76b53bc67e9:0xc718ee6b423ad7d3",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "อาหาร",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "10 Yen Bread",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Cafe / Sweets",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/10+Yen+Bread/data=!4m2!3m1!1s0x6000e73987ad8a99:0xc38556d23e057ef5",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "คาเฟ่ / ขนม",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "ICHIRAN Dotonbori -South Building-",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/ICHIRAN+Dotonbori+-South+Building-/data=!4m2!3m1!1s0x6000e714e9cbb42b:0x5338ae23699f2862",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Cho-tonkotsu Nodo 8",
+      "city": "Osaka",
+      "zone": "Osaka – Other / verify location",
+      "type": "Food / Restaurant",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Cho-tonkotsu+Nodo+8/data=!4m2!3m1!1s0x6000e74147135c21:0x60639f36379f2861",
+      "note": "",
+      "zone_display": "Osaka อื่น ๆ",
+      "type_display": "อาหาร",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Mount Fuji",
+      "city": "Fuji area",
+      "zone": "Fuji area",
+      "type": "Attraction / Shopping",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Mount+Fuji/data=!4m2!3m1!1s0x6019629a42fdc899:0xa6a1fcc916f3a4df",
+      "note": "",
+      "zone_display": "Fuji / Kawaguchiko",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Fujikawaguchiko",
+      "city": "Fuji area",
+      "zone": "Fuji area",
+      "type": "Attraction / Shopping",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Fujikawaguchiko/data=!4m2!3m1!1s0x601be06b8847241b:0x5c735674800c6246",
+      "note": "",
+      "zone_display": "Fuji / Kawaguchiko",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "Dotonbori",
+      "city": "Osaka",
+      "zone": "Osaka – Namba / Dotonbori / Shinsaibashi",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Dotonbori/data=!4m2!3m1!1s0x6000e713818af9fd:0xb8bb1326b48ba590",
+      "note": "",
+      "zone_display": "Namba / Dotonbori / Shinsaibashi",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Osaka Castle",
+      "city": "Osaka",
+      "zone": "Osaka – Central / Kyobashi",
+      "type": "Attraction / Shopping",
+      "trip_priority": "Optional",
+      "google_maps_url": "https://www.google.com/maps/place/Osaka+Castle/data=!4m2!3m1!1s0x6000e0cd5c283afd:0xf01d07d5ca11e41",
+      "note": "",
+      "zone_display": "Osaka Castle / Kyobashi",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "ตัวเลือก"
+    },
+    {
+      "name": "The National Museum of Art, Osaka",
+      "city": "Osaka",
+      "zone": "Osaka – Umeda / Nakanoshima",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/The+National+Museum+of+Art,+Osaka/data=!4m2!3m1!1s0x6000e6f6cc3aaaab:0x8abe7f03b14e0fe5",
+      "note": "",
+      "zone_display": "Umeda / Nakanoshima",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Umekita Park",
+      "city": "Osaka",
+      "zone": "Osaka – Umeda / Nakanoshima",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Umekita+Park/data=!4m2!3m1!1s0x6000e70001cd4cb1:0x9a3d01c5067401bf",
+      "note": "",
+      "zone_display": "Umeda / Nakanoshima",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Kuchu Teien Observatory",
+      "city": "Osaka",
+      "zone": "Osaka – Umeda / Nakanoshima",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Kuchu+Teien+Observatory/data=!4m2!3m1!1s0x6000e6889aeab56d:0x47c0e47c5c90e387",
+      "note": "",
+      "zone_display": "Umeda / Nakanoshima",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    },
+    {
+      "name": "Hankyu Umeda Main Store",
+      "city": "Osaka",
+      "zone": "Osaka – Umeda / Nakanoshima",
+      "type": "Attraction / Shopping",
+      "trip_priority": "High for this trip",
+      "google_maps_url": "https://www.google.com/maps/place/Hankyu+Umeda+Main+Store/data=!4m2!3m1!1s0x6000e692589cb9eb:0xbc9b6d5116f447ad",
+      "note": "",
+      "zone_display": "Umeda / Nakanoshima",
+      "type_display": "เที่ยว / ช้อป",
+      "priority_display": "เหมาะกับทริปนี้"
+    }
+  ],
+  "trip": [
+    {
+      "date": "2026-09-26",
+      "day": "Day 1",
+      "title": "Bangkok → Kansai",
+      "city": "Bangkok / Flight",
+      "emoji": "✈️",
+      "meals": "— / — / —",
+      "hotel": "บนเครื่อง / เดินทางกลางคืน",
+      "summary": "รวมตัวที่สนามบินสุวรรณภูมิ เวลา 21:00 และเตรียมเช็กอินเที่ยวบิน VZ820 เวลา 00:15 ของวันถัดไป",
+      "items": [
+        {
+          "time": "21:00",
+          "name": "Suvarnabhumi Airport",
+          "jp": "スワンナプーム国際空港",
+          "desc": "พบคณะที่สนามบินสุวรรณภูมิ ชั้น 4 เคาน์เตอร์ THAI VIETJET ควรเผื่อเวลาเช็กอินอย่างน้อย 3 ชั่วโมง"
+        }
+      ],
+      "food": [
+        "กินให้อิ่มก่อนขึ้นเครื่องหรือเตรียมของว่างที่ผ่านเงื่อนไขสายการบิน",
+        "เลี่ยงนำเนื้อสัตว์ ผัก ผลไม้สดเข้าญี่ปุ่น"
+      ]
+    },
+    {
+      "date": "2026-09-27",
+      "day": "Day 2",
+      "title": "Kyoto Day",
+      "city": "Kyoto → Gifu",
+      "emoji": "⛩️",
+      "meals": "— / Japanese Set / อิสระ",
+      "hotel": "KOYO HOTEL GIFU หรือเทียบเท่า",
+      "summary": "ถึงสนามบินคันไซ 07:55 แล้วเดินทางสู่เกียวโต เที่ยวศาลเจ้าคิตาโนะ เท็มมังกุ และฟูชิมิ อินาริ ก่อนเข้าพักที่กิฟุ",
+      "items": [
+        {
+          "time": "07:55",
+          "name": "Kansai International Airport",
+          "jp": "関西国際空港",
+          "desc": "ผ่าน ตม. รับสัมภาระ แล้วเดินทางโดยรถทัวร์สู่เกียวโต"
+        },
+        {
+          "time": "สาย",
+          "name": "Kitano Tenmangu Shrine",
+          "jp": "北野天満宮",
+          "desc": "ศาลเจ้าเก่าแก่ที่มีชื่อเสียงเรื่องเทพแห่งการศึกษา เหมาะกับขอพรด้านการเรียน การสอบ และการพัฒนาความสามารถ"
+        },
+        {
+          "time": "กลางวัน",
+          "name": "Japanese Set",
+          "jp": "和食セット",
+          "desc": "มื้อกลางวันตามโปรแกรมทัวร์"
+        },
+        {
+          "time": "บ่าย",
+          "name": "Fushimi Inari Taisha",
+          "jp": "伏見稲荷大社",
+          "desc": "แลนด์มาร์กเสาโทริอิสีแดงนับพันบนทางขึ้นภูเขาอินาริ และพบรูปปั้นสุนัขจิ้งจอกทั่วบริเวณ"
+        }
+      ],
+      "food": [
+        "Inari sushi — เต้าหู้หวานห่อข้าว เข้ากับธีมศาลเจ้าอินาริ",
+        "Yatsuhashi — ขนมเกียวโตยอดนิยม",
+        "Matcha sweets — ของหวานชาเขียว"
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "day": "Day 3",
+      "title": "Japan Alps & Shirakawa-go",
+      "city": "Nagano / Gifu",
+      "emoji": "🏔️",
+      "meals": "เช้า / อิสระ / อิสระ",
+      "hotel": "KOYO HOTEL GIFU หรือเทียบเท่า",
+      "summary": "วันธรรมชาติเต็ม ๆ เริ่มคามิโคจิ ชมแม่น้ำอาซุสะและ Japan Alps ต่อด้วยหมู่บ้านมรดกโลกชิราคาวาโกะ แล้วแวะ AEON Mall",
+      "items": [
+        {
+          "time": "เช้า",
+          "name": "Kamikochi",
+          "jp": "上高地",
+          "desc": "ที่ราบสูงราว 1,500 เมตร โอบล้อมด้วยภูเขาและแม่น้ำอาซุสะสีใส เป็นหนึ่งในวิว Japan Alps ที่โดดเด่นมาก"
+        },
+        {
+          "time": "เที่ยง",
+          "name": "Lunch on your own",
+          "jp": "自由昼食",
+          "desc": "อิสระอาหารตามอัธยาศัย"
+        },
+        {
+          "time": "บ่าย",
+          "name": "Shirakawa-go",
+          "jp": "白川郷",
+          "desc": "หมู่บ้านมรดกโลก UNESCO ขึ้นชื่อเรื่องบ้านหลังคาทรงกัสโชซึคุริที่ออกแบบให้รับหิมะหนักในฤดูหนาว"
+        },
+        {
+          "time": "เย็น",
+          "name": "AEON Mall",
+          "jp": "イオンモール",
+          "desc": "แวะซื้อของใช้ อาหาร ของฝาก และมื้อเย็นก่อนเข้าที่พัก"
+        }
+      ],
+      "food": [
+        "Hida beef — เนื้อฮิดะของขึ้นชื่อแถบกิฟุ",
+        "Gohei-mochi — ข้าวบดเสียบไม้ย่างซอสมิโสะ/ถั่ว",
+        "Hoba miso — มิโสะย่างบนใบโฮบะ"
+      ]
+    },
+    {
+      "date": "2026-09-29",
+      "day": "Day 4",
+      "title": "Osaka Highlights",
+      "city": "Osaka",
+      "emoji": "🏯",
+      "meals": "เช้า / อิสระ / อิสระ",
+      "hotel": "KANSAI INTERNATIONAL AIRPORT HOTEL 11 หรือเทียบเท่า",
+      "summary": "เข้าโอซาก้า แวะ Duty Free, Hankyu Umeda, Osaka Castle และจบวันแถว Shinsaibashi",
+      "items": [
+        {
+          "time": "เช้า",
+          "name": "Duty Free Shop",
+          "jp": "免税店",
+          "desc": "ช้อปสินค้าเครื่องสำอาง อาหารเสริม และของฝาก"
+        },
+        {
+          "time": "สาย",
+          "name": "Hankyu Umeda Main Store",
+          "jp": "阪急うめだ本店",
+          "desc": "ห้างแฟลกชิปใหญ่ของอูเมดะ เด่นเรื่องแฟชั่น แบรนด์ดัง และชั้นอาหาร/ขนมของฝาก"
+        },
+        {
+          "time": "บ่าย",
+          "name": "Osaka Castle",
+          "jp": "大阪城",
+          "desc": "หนึ่งในสัญลักษณ์สำคัญของโอซาก้า โปรแกรมทัวร์ระบุถ่ายรูปด้านนอกและไม่รวมค่าเข้าด้านใน"
+        },
+        {
+          "time": "เย็น",
+          "name": "Shinsaibashi & Dotonbori Area",
+          "jp": "心斎橋・道頓堀",
+          "desc": "ย่านช้อปปิ้งและแสงสีชื่อดัง เหมาะกับเดินกินและดูบรรยากาศเมืองช่วงเย็น"
+        }
+      ],
+      "food": [
+        "Takoyaki — ของกิน代表โอซาก้า",
+        "Okonomiyaki — พิซซ่าญี่ปุ่นสไตล์โอซาก้า",
+        "Kushikatsu — ของทอดเสียบไม้",
+        "Cheesecake / sweets — ของหวานซื้อกลับโรงแรม"
+      ]
+    },
+    {
+      "date": "2026-09-30",
+      "day": "Day 5",
+      "title": "Free Day — Food Crawl",
+      "city": "Osaka",
+      "emoji": "🍜",
+      "meals": "เช้าโรงแรม / อิสระ / อิสระ",
+      "hotel": "KANSAI INTERNATIONAL AIRPORT HOTEL 11 หรือเทียบเท่า",
+      "summary": "Free Day 08:00–21:00 ไม่มีรถบัสทัวร์ โฟกัสกิน 60% + เที่ยว 30% + ช้อป 10% โดย Dotonbori เป็นจุดที่ต้องไป",
+      "items": [
+        {
+          "time": "08:00",
+          "name": "Start from hotel",
+          "jp": "ホテル出発",
+          "desc": "จุดเริ่มต้นจะอัปเดตเมื่อบริษัททัวร์ยืนยันโรงแรมจริง"
+        },
+        {
+          "time": "09:30",
+          "name": "Kuromon Ichiba Market",
+          "jp": "黒門市場",
+          "desc": "เริ่มตะลุยกินช่วงเช้า เน้นอาหารทะเล ของย่าง และของหวานแบบกินเป็นคำ ๆ"
+        },
+        {
+          "time": "12:00",
+          "name": "Namba Food Crawl",
+          "jp": "難波",
+          "desc": "เลือก 1 ร้านหลัก แล้วเก็บร้านสำรองไว้เผื่อคิวยาว"
+        },
+        {
+          "time": "15:00",
+          "name": "Namba / Hozenji",
+          "jp": "法善寺横丁",
+          "desc": "เดินย่อย ถ่ายรูป และแวะตรอกบรรยากาศญี่ปุ่นก่อนเข้าสู่ช่วงเย็น"
+        },
+        {
+          "time": "17:30",
+          "name": "Dotonbori",
+          "jp": "道頓堀",
+          "desc": "ช่วงเย็นถึงกลางคืน เหมาะกับแสงสี ป้ายกูลิโกะ และตะลุยของกินต่อ"
+        },
+        {
+          "time": "21:00",
+          "name": "Return to hotel",
+          "jp": "ホテルへ戻る",
+          "desc": "เวลาเป้าหมายกลับที่พัก ปรับได้ตามสภาพจริง"
+        }
+      ],
+      "food": [
+        "Maguro / sushi bites ที่ Kuromon",
+        "Okonomiyaki หรือ Tempura เป็นมื้อหลัก",
+        "Takoyaki เป็นของว่าง",
+        "Kushikatsu / Udon / Ramen เป็นมื้อเย็นหรือร้านสำรอง"
+      ]
+    },
+    {
+      "date": "2026-10-01",
+      "day": "Day 6",
+      "title": "Kansai → Bangkok",
+      "city": "KIX → BKK",
+      "emoji": "🛫",
+      "meals": "— / — / —",
+      "hotel": "—",
+      "summary": "เดินทางสู่สนามบินคันไซ เที่ยวบิน VZ821 เวลา 08:55 ถึงสุวรรณภูมิประมาณ 12:55",
+      "items": [
+        {
+          "time": "เช้ามืด",
+          "name": "Kansai International Airport",
+          "jp": "関西国際空港",
+          "desc": "ออกจากโรงแรมตามเวลานัดหมายของทัวร์เพื่อเช็กอิน"
+        },
+        {
+          "time": "08:55",
+          "name": "Flight VZ821",
+          "jp": "関西 → バンコク",
+          "desc": "KIX → BKK กระเป๋าโหลด 20 กก. และถือขึ้นเครื่อง 7 กก. ตามโปรแกรม"
+        }
+      ],
+      "food": [
+        "ซื้อขนม/ของฝากสนามบินก่อนขึ้นเครื่องถ้ามีเวลา",
+        "เผื่อเวลาสำหรับ Tax Free และโหลดกระเป๋า"
+      ]
+    }
+  ],
+  "curated": {
+    "Maguroya Kurogin Kuromon": {
+      "kind": "ทูน่า / ซาชิมิ",
+      "must": "ลองเซ็ตทูน่า 3 ส่วน: Akami / Chu-toro / O-toro หรือแบ่งกันชิมเป็นคำ ๆ",
+      "best_time": "เช้า–สาย หลังเข้าตลาด",
+      "budget": "ขึ้นกับชนิดทูน่า — ดูราคาหน้าร้าน",
+      "hours": "เวลาตลาด/ร้านอาจปรับตามวัน ควรเช็ก Maps ตอนเช้า",
+      "verdict": "🔥 Must Eat",
+      "tip": "อย่าเพิ่งสั่งชามใหญ่ ถ้าตั้งใจ Food Crawl หลายร้าน",
+      "source": "https://www.kurogin.co.jp/",
+      "source_label": "Kurogin official"
+    },
+    "Kushikatsu Daruma - Namba Main Shop": {
+      "kind": "คุชิคัตสึ / ของทอดเสียบไม้",
+      "must": "สั่งเป็นเซ็ตหลายชนิดเพื่อแชร์กัน 2 คน และลอง doteyaki ถ้าอยากชิมของดังแบบโอซาก้า",
+      "best_time": "มื้อกลางวันหรือเย็น",
+      "budget": "ประมาณ ¥1,500–2,500/คน",
+      "hours": "จ.–ศ. 11:30–22:30 • ส.–อา./วันหยุด 10:30–22:30 (L.O. ก่อนปิด 30 นาที)",
+      "verdict": "⭐ ตัวเลือกมื้อหลัก",
+      "tip": "ร้านกำหนดให้ลูกค้าแต่ละคนสั่งเครื่องดื่มอย่างน้อย 1 แก้ว",
+      "source": "https://www.kushikatu-daruma.com/location/nanba_honten",
+      "source_label": "Daruma official"
+    },
+    "Tsurutontan Soemoncho": {
+      "kind": "อุด้ง",
+      "must": "เลือกอุด้งชามใหญ่สไตล์ร้าน แบ่งรสกัน 2 คนได้ถ้าอยากเก็บท้องไปร้านอื่น",
+      "best_time": "มื้อเย็น/ดึก — เหมาะเป็นร้าน fallback เพราะเปิดยาว",
+      "budget": "ดูเมนูวันจริง",
+      "hours": "จ.–พฤ./อา. 11:00–06:00 • ศ.–ส. 11:00–08:00",
+      "verdict": "💡 ร้านสำรองดีมาก",
+      "tip": "อยู่ใกล้ Nipponbashi/Dotonbori เดินต่อช่วงกลางคืนสะดวก",
+      "source": "https://www.tsurutontan.co.jp/shop/soemoncho/",
+      "source_label": "Tsurutontan official"
+    },
+    "Gyukatsu Motomura Namba Branch": {
+      "kind": "กิวคัตสึ",
+      "must": "Gyukatsu set — ย่างเพิ่มบนแผ่นร้อนตามระดับที่ชอบ",
+      "best_time": "มื้อกลางวันหรือเย็น",
+      "budget": "ดูเมนูวันจริง",
+      "hours": "11:00–22:00 (L.O. 21:30) • ไม่มีวันหยุดประจำ",
+      "verdict": "⭐ มื้อหลักยอดนิยม",
+      "tip": "ร้านยอดนิยมมีโอกาสต่อคิว ให้เก็บเป็นตัวเลือก ไม่ควรล็อกเวลาแน่นเกินไป",
+      "source": "https://www.gyukatsu-motomura.com/store/Namba",
+      "source_label": "Gyukatsu Motomura official"
+    },
+    "Tempura Makino Namba": {
+      "kind": "เทมปุระทอดสด",
+      "must": "Seafood tempura set หรือ Ebi tempura set — ร้านทอดแล้วเสิร์ฟเป็นจังหวะ",
+      "best_time": "มื้อกลางวัน",
+      "budget": "เซ็ตประมาณ ¥1,100–1,430 ตามข้อมูลร้านปัจจุบัน",
+      "hours": "ประมาณ 11:00–21:30 (L.O. 21:00) — เช็กวันจริงอีกครั้ง",
+      "verdict": "🔥 แนะนำถ้าอยากมื้อหลักไม่หนักมาก",
+      "tip": "เหมาะกับ Food Crawl เพราะเลือกเซ็ตชัดเจนและอยู่ Namba",
+      "source": "https://page.line.me/501ogpxn",
+      "source_label": "Makino LINE official"
+    },
+    "Fukutaro Honten": {
+      "kind": "โอโคโนมิยากิ / เทปันยากิ",
+      "must": "Okonomiyaki หรือ Negiyaki — ถ้าไป 2 คนสั่งคนละแบบแล้วแชร์",
+      "best_time": "เย็น (วันพุธ Free Day ร้านเปิดช่วงเย็น)",
+      "budget": "ประมาณ ¥2,000–3,000/คน",
+      "hours": "จ.–ศ. 17:00–23:30 • ส.–อา./วันหยุด 12:00–23:30 (ข้อมูลล่าสุดจาก Tabelog)",
+      "verdict": "🔥 Candidate มื้อเย็น",
+      "tip": "Free Day 30 ก.ย. 2026 เป็นวันพุธ จึงอย่าวางร้านนี้เป็นมื้อกลางวัน",
+      "source": "https://tabelog.com/osaka/A2701/A270202/27002665/",
+      "source_label": "Tabelog listing"
+    },
+    "Takoyaki Juhachiban Dotonbori": {
+      "kind": "ทาโกะยากิ",
+      "must": "ทาโกะยากิแบบมี tenkasu เยอะ เนื้อสัมผัสกรอบกว่าหลายร้าน",
+      "best_time": "ของว่างช่วงเย็นก่อนถ่ายรูป Dotonbori",
+      "budget": "ประมาณต่ำกว่า ¥1,000/คน",
+      "hours": "หลายแหล่งยังระบุ 11:00–21:00 แต่สถานะร้านใน Tabelog ถูกพักการแสดง — ต้องเช็ก Maps วันจริง",
+      "verdict": "⚠️ เช็กสถานะก่อน",
+      "tip": "ถ้าปิด ให้ใช้ร้านทาโกะยากิอื่นใน Dotonbori แทน ไม่ควรเดินอ้อมเพื่อร้านเดียว",
+      "source": "https://www.timeout.com/osaka/restaurants/takoyaki-juhachiban-dotonbori",
+      "source_label": "Time Out Osaka + cross-check"
+    },
+    "Kuromon Market": {
+      "kind": "ตลาดอาหาร",
+      "must": "ซีฟู้ด/ทูน่า/ผลไม้ — เน้นซื้อชิมทีละน้อยเพื่อเก็บท้อง",
+      "best_time": "09:00–11:00",
+      "budget": "ยืดหยุ่นตามร้าน",
+      "hours": "แต่ละร้านไม่เท่ากัน — ช่วงเช้าถึงบ่ายต้นเหมาะสุด",
+      "verdict": "🔥 Must Go",
+      "tip": "เริ่มที่นี่ก่อน Namba จะเรียงเส้นทางไป Dotonbori ได้ลื่น",
+      "source": "https://kuromon.com/en/",
+      "source_label": "Kuromon Market official"
+    },
+    "Hozenji Yokocho": {
+      "kind": "ย่านเก่า / เดินเล่น",
+      "must": "แวะ Hozenji และบรรยากาศตรอกหิน ก่อนเข้าสู่ Dotonbori",
+      "best_time": "บ่ายแก่–เย็น",
+      "budget": "ฟรี (ไม่รวมอาหาร)",
+      "hours": "ตรอกเปิดตลอด ร้านต่าง ๆ มีเวลาแยกกัน",
+      "verdict": "⭐ แวะ 20–30 นาที",
+      "tip": "อยู่ราว 5 นาทีจาก Namba และต่อ Dotonbori ได้ง่าย",
+      "source": "https://www.osaka-info.jp/en/spot/hozenji-yokocho/",
+      "source_label": "OSAKA-INFO official"
+    },
+    "Dotonbori": {
+      "kind": "ย่านอาหาร / Neon",
+      "must": "Glico sign + เดินริมคลอง + ทาโกะยากิ/โอโคโนมิยากิ",
+      "best_time": "หลัง 17:00 ถึงค่ำ",
+      "budget": "ฟรี (ไม่รวมกิน/ช้อป)",
+      "hours": "ย่านเปิดตลอด ร้านต่าง ๆ มีเวลาแยกกัน",
+      "verdict": "🔥 Must Go",
+      "tip": "เก็บเป็นท้ายวัน เพราะบรรยากาศไฟกลางคืนเด่นที่สุด",
+      "source": "https://www.japan.travel/en/spot/2207/",
+      "source_label": "JNTO official"
+    }
+  },
+  "v3_meta": {
+    "version": "3.0",
+    "updated": "2026-09-11",
+    "note": "เวลาร้าน/ราคาเป็นข้อมูลที่ค้นล่าสุดก่อนเดินทาง ควรเช็ก Google Maps หรือหน้าร้านซ้ำในวันจริง"
+  }
+}
