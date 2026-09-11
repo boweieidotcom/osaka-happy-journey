@@ -19,6 +19,7 @@ const fmtDate=s=>new Intl.DateTimeFormat('th-TH',{day:'numeric',month:'short',ye
 async function boot(){
   DATA=await fetch('data.json').then(r=>r.json());
   setupNav(); renderAll(); setupPWA();
+  initCloudSync();
 }
 function setupNav(){
   $$('.nav-btn').forEach(b=>b.onclick=()=>{ $$('.nav-btn').forEach(x=>x.classList.remove('active')); b.classList.add('active'); $$('.view').forEach(v=>v.classList.remove('active')); $('#'+b.dataset.view).classList.add('active'); scrollTo({top:0,behavior:'smooth'}); });
@@ -37,6 +38,7 @@ function renderHome(){
     <section class="hero">${photo("dotonbori","images/osaka.svg")}<div class="kicker">OUR JAPAN TRIP</div><h2>${esc(lead)}</h2><p>${esc(sub)}</p>
       <div class="hero-grid"><div class="stat"><b>2 คน</b><span>Couple trip</span></div><div class="stat"><b>6 วัน</b><span>26 Sep–1 Oct</span></div><div class="stat"><b>1 Free Day</b><span>Food crawl</span></div><div class="stat"><b>69 จุด</b><span>Saved in Japan</span></div></div>
     </section>
+    <div id="homeWeatherMini" class="card weather-mini">กำลังโหลด Osaka weather…</div>
     <div class="section-head"><div><h2>${day?'วันนี้':'Trip snapshot'}</h2><p>${fmtDate(target.date)} · ${esc(target.city)}</p></div><span class="badge">${esc(target.meals)}</span></div>
     <div class="card">
       <div class="timeline">${target.items.map(i=>`<div class="timeline-item"><div class="time">${esc(i.time)}</div><h3>${esc(i.name)}</h3><div class="jp">${esc(i.jp)}</div><p>${esc(i.desc)}</p><div class="actions"><a class="btn outline" target="_blank" rel="noopener" href="${mapSearch(i.name)}">↗ Maps</a></div></div>`).join('')}</div>
@@ -63,7 +65,7 @@ const defaultPlan=[
  {time:'21:00',name:'กลับโรงแรม',url:'',note:'ปรับตามเวลาและโรงแรมจริง'}
 ];
 function loadPlan(){try{return JSON.parse(localStorage.getItem('osakaPlan'))||defaultPlan}catch{return defaultPlan}}
-function savePlan(p){localStorage.setItem('osakaPlan',JSON.stringify(p));}
+function savePlan(p){localStorage.setItem('osakaPlan',JSON.stringify(p)); if(CLOUD_READY&&SYNC_TRIP_ID) syncPlanToCloud(p);}
 function renderFree(){
  const plan=loadPlan();
  $('#freeView').innerHTML=`<div class="section-head"><div><h2>Free Day — 30 Sep</h2><p>08:00–21:00 · กิน 60% · เที่ยว 30% · ช้อป 10%</p></div><button id="addPlace" class="btn red">＋ เพิ่ม</button></div>
@@ -163,8 +165,8 @@ const TRIP_INFO={
  'Osaka Castle':{about:'แลนด์มาร์กสำคัญของโอซาก้า โปรแกรมทัวร์ระบุการชมบริเวณด้านนอก',photo:'ตัวปราสาทจากสวนด้านหน้า',eat:'เก็บท้องไว้สำหรับ Shinsaibashi / Dotonbori',tip:'อย่าเผื่อเวลาเข้าพิพิธภัณฑ์ด้านในหากไกด์ไม่ได้รวมไว้ในโปรแกรม'},
  'Dotonbori':{about:'ย่านกิน เที่ยว และแสงสียอดนิยมใจกลางโอซาก้า เหมาะกับช่วงเย็นถึงค่ำ',photo:'Glico sign + คลอง Dotonbori',eat:'Takoyaki / Okonomiyaki / Kushikatsu',tip:'คนหนาแน่นช่วงค่ำ นัดจุดเจอกันไว้เผื่อเดินแยก'}
 };
-function favs(){try{return new Set(JSON.parse(localStorage.getItem('osakaFavs')||'[]'))}catch{return new Set()}}
-function toggleFav(name){const f=favs();f.has(name)?f.delete(name):f.add(name);localStorage.setItem('osakaFavs',JSON.stringify([...f]));renderSavedV4(); if(document.querySelector('#mapView.active')) renderMapV4();}
+function favs(){if(CLOUD_READY&&SYNC_TRIP_ID)return new Set(CLOUD_FAVS);try{return new Set(JSON.parse(localStorage.getItem('osakaFavs')||'[]'))}catch{return new Set()}}
+async function toggleFav(name){const f=favs();const adding=!f.has(name); adding?f.add(name):f.delete(name); CLOUD_FAVS=new Set(f); localStorage.setItem('osakaFavs',JSON.stringify([...f]));renderSavedV4(); if(document.querySelector('#mapView.active')) renderMapV4(); if(CLOUD_READY&&SYNC_TRIP_ID){try{if(adding) await SB.from('favorites').upsert({trip_id:SYNC_TRIP_ID,spot_id:name}); else await SB.from('favorites').delete().eq('trip_id',SYNC_TRIP_ID).eq('spot_id',name); setSyncState('☁️ Synced');}catch(e){console.error(e);setSyncState('⚠️ Sync failed')}}}
 function starButton(name){return `<button class="star-btn ${favs().has(name)?'on':''}" data-fav="${esc(name)}" title="Favorite">${favs().has(name)?'★':'☆'}</button>`}
 function bindFavs(){document.querySelectorAll('[data-fav]').forEach(b=>b.onclick=()=>toggleFav(b.dataset.fav))}
 
@@ -214,4 +216,98 @@ const oldRenderMore=renderMore;
 renderMore=function(){oldRenderMore();$('#moreView').insertAdjacentHTML('afterbegin','<div id="weatherBox"></div>');loadWeatherV4();}
 
 const oldRenderAll=renderAll;
-renderAll=function(){renderHome();renderTrip();renderFree();renderSavedV4();renderPhrase();renderMapV4();renderMore();}
+renderAll=function(){renderHome();loadHomeWeather();renderTrip();renderFree();renderSavedV4();renderPhrase();renderMapV4();renderMore();}
+
+
+// ===== V4.3 Shared Trip Sync — no accounts / no member split =====
+let SB=null, CLOUD_READY=false, SYNC_TRIP_ID=null, CLOUD_FAVS=new Set(), CLOUD_PLAN=null, syncPollTimer=null;
+const SHARED_CODE_KEY='osakaSharedTripCode';
+function setSyncState(text){const el=document.getElementById('syncState');if(el)el.textContent=text;}
+function getSharedCode(){return localStorage.getItem(SHARED_CODE_KEY)||'';}
+function setSharedCode(code){code=String(code||'').trim().toLowerCase(); if(code)localStorage.setItem(SHARED_CODE_KEY,code); else localStorage.removeItem(SHARED_CODE_KEY); return code;}
+
+async function initCloudSync(){
+  try{
+    if(!window.supabase||!window.OSAKA_SUPABASE)return;
+    SB=window.supabase.createClient(window.OSAKA_SUPABASE.url,window.OSAKA_SUPABASE.publishableKey,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+    CLOUD_READY=true;
+    const code=getSharedCode();
+    if(code) await connectSharedTrip(code,false);
+    else renderMore();
+  }catch(e){console.error('Supabase init',e)}
+}
+async function connectSharedTrip(code,showAlert=true){
+  code=String(code||'').trim().toLowerCase(); if(!code)return;
+  setSyncState('กำลังเชื่อมต่อ…');
+  const {data,error}=await SB.rpc('shared_check_code',{p_code:code});
+  if(error||!data){ if(showAlert)alert('Trip Code ไม่ถูกต้อง หรือยังไม่ได้รัน SQL V4.3 ใน Supabase'); setSyncState('⚠️ เชื่อมต่อไม่ได้'); return false; }
+  setSharedCode(code); SYNC_TRIP_ID='shared';
+  await Promise.all([loadCloudFavorites(),loadCloudPlan()]);
+  startSyncPolling(); renderAll(); setSyncState('☁️ Synced');
+  return true;
+}
+function disconnectSharedTrip(){setSharedCode('');SYNC_TRIP_ID=null;CLOUD_FAVS=new Set();CLOUD_PLAN=null;if(syncPollTimer){clearInterval(syncPollTimer);syncPollTimer=null;}renderAll();}
+async function loadCloudFavorites(){
+  if(!SB||!SYNC_TRIP_ID)return;
+  const {data,error}=await SB.rpc('shared_get_favorites',{p_code:getSharedCode()});
+  if(error){console.error(error);setSyncState('⚠️ Sync failed');return;}
+  CLOUD_FAVS=new Set((data||[]).map(x=>x.spot_id)); localStorage.setItem('osakaFavs',JSON.stringify([...CLOUD_FAVS]));
+}
+async function loadCloudPlan(){
+  if(!SB||!SYNC_TRIP_ID)return;
+  const {data,error}=await SB.rpc('shared_get_plan',{p_code:getSharedCode()});
+  if(error){console.error(error);setSyncState('⚠️ Sync failed');return;}
+  if(data&&data.length){CLOUD_PLAN=data.map(x=>({time:x.plan_time||'',name:x.name||'',url:x.url||'',note:x.note||''}));localStorage.setItem('osakaPlan',JSON.stringify(CLOUD_PLAN));}
+  else {const local=loadPlan();await syncPlanToCloud(local);CLOUD_PLAN=local;}
+}
+async function syncPlanToCloud(plan){
+  if(!SB||!SYNC_TRIP_ID)return; setSyncState('☁️ Syncing…');
+  const payload=(plan||[]).map((p,i)=>({sort_order:i,time:p.time||'',name:p.name||'',url:p.url||'',note:p.note||''}));
+  const {error}=await SB.rpc('shared_replace_plan',{p_code:getSharedCode(),p_plan:payload});
+  if(error){console.error(error);setSyncState('⚠️ Sync failed');return;}
+  CLOUD_PLAN=plan; setSyncState('☁️ Synced');
+}
+function startSyncPolling(){
+  if(syncPollTimer)clearInterval(syncPollTimer);
+  syncPollTimer=setInterval(async()=>{if(!document.hidden&&SYNC_TRIP_ID){await Promise.all([loadCloudFavorites(),loadCloudPlan()]);renderSavedV4();renderFree();}},12000);
+}
+function favs(){if(CLOUD_READY&&SYNC_TRIP_ID)return new Set(CLOUD_FAVS);try{return new Set(JSON.parse(localStorage.getItem('osakaFavs')||'[]'))}catch{return new Set()}}
+async function toggleFav(name){
+  const f=favs(),adding=!f.has(name);adding?f.add(name):f.delete(name);CLOUD_FAVS=new Set(f);localStorage.setItem('osakaFavs',JSON.stringify([...f]));renderSavedV4();if(document.querySelector('#mapView.active'))renderMapV4();
+  if(CLOUD_READY&&SYNC_TRIP_ID){
+    setSyncState('☁️ Syncing…');const {error}=await SB.rpc('shared_set_favorite',{p_code:getSharedCode(),p_spot_id:name,p_add:adding});
+    if(error){console.error(error);setSyncState('⚠️ Sync failed');await loadCloudFavorites();renderSavedV4();}else setSyncState('☁️ Synced');
+  }
+}
+function bindFavs(){document.querySelectorAll('[data-fav]').forEach(b=>b.onclick=()=>toggleFav(b.dataset.fav))}
+
+// More: shared Trip Code panel; no email/password/account needed.
+const renderMoreV43=renderMore;
+renderMore=function(){
+  renderMoreV43();
+  const holder=document.createElement('div');holder.id='cloudPanel';$('#moreView').prepend(holder);renderCloudPanel();
+}
+function renderCloudPanel(){
+  const holder=$('#cloudPanel');if(!holder)return;
+  if(!SB){holder.innerHTML='<div class="card">Supabase ยังไม่พร้อม</div>';return;}
+  if(!SYNC_TRIP_ID){holder.innerHTML=`<div class="section-head"><div><h2>☁️ Shared Sync</h2><p>ไม่ต้องสมัครสมาชิก • ใช้ Trip Code เดียวกัน 2 เครื่อง</p></div></div><div class="card"><label>Trip Code<input id="tripCode" autocomplete="off" placeholder="ใส่รหัสทริปส่วนตัว"></label><div class="actions"><button id="connectTrip" class="btn red">Connect</button></div><p class="small-muted">ใครที่รู้รหัสนี้จะเข้าถึง Favorite และ Free Day Plan ชุดเดียวกันได้ อย่าแชร์รหัสสาธารณะ</p><div id="syncState"></div></div>`;$('#connectTrip').onclick=()=>connectSharedTrip($('#tripCode').value);return;}
+  holder.innerHTML=`<div class="section-head"><div><h2>☁️ Shared Sync</h2><p>Favorite + Free Day ใช้ข้อมูลชุดเดียวกัน</p></div><span class="badge">Connected</span></div><div class="card"><p><b>OSAKA Happy Journey</b></p><p id="syncState">☁️ Synced</p><p class="small-muted">สองเครื่องใช้ Trip Code เดียวกัน • ระบบตรวจข้อมูลใหม่อัตโนมัติประมาณทุก 12 วินาที</p><div class="actions"><button id="forceSync" class="btn red">↻ Sync now</button><button id="disconnectTrip" class="btn outline">Disconnect</button></div></div>`;
+  $('#forceSync').onclick=async()=>{setSyncState('กำลัง Sync…');await Promise.all([loadCloudFavorites(),loadCloudPlan()]);renderAll();setSyncState('☁️ Synced');};$('#disconnectTrip').onclick=disconnectSharedTrip;
+}
+
+async function loadHomeWeather(){
+  const box=$('#homeWeatherMini');if(!box)return;
+  try{const u='https://api.open-meteo.com/v1/forecast?latitude=34.6937&longitude=135.5023&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=4';const j=await fetch(u).then(r=>r.json());const [ic,tx]=weatherCode(j.daily.weather_code[0]);box.innerHTML=`<div class="fav-row"><div><b>${ic} Osaka Weather</b><div class="spot-meta">วันนี้ ${Math.round(j.daily.temperature_2m_min[0])}–${Math.round(j.daily.temperature_2m_max[0])}°C · ☔ ${j.daily.precipitation_probability_max[0]}% · ${tx}</div></div><button class="btn outline" id="openWeather">4 วัน</button></div>`;$('#openWeather').onclick=()=>{document.querySelector('[data-view="moreView"]').click();setTimeout(()=>document.getElementById('weatherBox')?.scrollIntoView({behavior:'smooth'}),80)}}catch{box.innerHTML='Weather โหลดไม่ได้ในตอนนี้'}
+}
+
+// Saved with area filters + Favorite filter.
+renderSavedV4=function(){
+ const q=($('#savedSearch')?.value||'').toLowerCase(); const only=$('#favOnly')?.checked||false; const selected=$('#zoneFilter')?.value||'ทั้งหมด'; const f=favs();
+ const zones=['ทั้งหมด','Namba / Dotonbori / Shinsaibashi','Umeda / Nakanoshima','Karahori','Osaka Castle / Kyobashi','Shinsekai','Kyoto','Fuji area','Osaka อื่น ๆ','ญี่ปุ่นอื่น ๆ'];
+ const spotZone=s=>s.zone_display||'';
+ const matchZone=s=>selected==='ทั้งหมด'||(selected==='Kyoto'?s.city==='Kyoto':selected==='Fuji area'?spotZone(s).includes('Fuji'):selected==='ญี่ปุ่นอื่น ๆ'?(!['Osaka','Kyoto'].includes(s.city)&&!spotZone(s).includes('Fuji')):spotZone(s)===selected);
+ const spots=DATA.spots.filter(s=>(!q||s.name.toLowerCase().includes(q)||spotZone(s).toLowerCase().includes(q))&&(!only||f.has(s.name))&&matchZone(s)).sort((a,b)=>(f.has(b.name)?1:0)-(f.has(a.name)?1:0));
+ $('#savedView').innerHTML=`<div class="section-head"><div><h2>Saved Spots</h2><p>${DATA.spots.length} จุด • ${SYNC_TRIP_ID?'☁️ Favorite sync ร่วมกัน':'★ Favorite ยังเก็บเฉพาะเครื่องนี้'}</p></div></div><div class="card"><input id="savedSearch" placeholder="ค้นหาร้าน / ย่าน" value="${esc(q)}"><select id="zoneFilter" style="margin-top:10px"><option value="ทั้งหมด">ทุกย่าน</option>${zones.slice(1).map(z=>`<option ${selected===z?'selected':''}>${esc(z)}</option>`).join('')}</select><label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="favOnly" type="checkbox" ${only?'checked':''}> แสดงเฉพาะ ★ Favorite</label></div><div class="cards two" style="margin-top:12px">${spots.map(s=>`<article class="card"><div class="fav-row"><div><b>${esc(s.name)}</b><div class="spot-meta">${esc(spotZone(s))} · ${esc(s.type_display)}</div></div>${starButton(s.name)}</div>${MENU_HINT[s.name]?`<p><strong>🍴 เมนูเด่น:</strong> ${esc(MENU_HINT[s.name])}</p>`:''}<div class="actions"><a class="btn outline" target="_blank" rel="noopener" href="${esc(s.google_maps_url)}">↗ Google Maps</a>${V4_COORDS[s.name]?'<span class="badge gray">⌖ Map ready</span>':''}</div></article>`).join('')}</div>`;
+ $('#savedSearch').oninput=renderSavedV4;$('#favOnly').onchange=renderSavedV4;$('#zoneFilter').onchange=renderSavedV4;bindFavs();
+}
+renderSaved=renderSavedV4;
