@@ -300,14 +300,104 @@ async function loadHomeWeather(){
   try{const u='https://api.open-meteo.com/v1/forecast?latitude=34.6937&longitude=135.5023&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=4';const j=await fetch(u).then(r=>r.json());const [ic,tx]=weatherCode(j.daily.weather_code[0]);box.innerHTML=`<div class="fav-row"><div><b>${ic} Osaka Weather</b><div class="spot-meta">วันนี้ ${Math.round(j.daily.temperature_2m_min[0])}–${Math.round(j.daily.temperature_2m_max[0])}°C · ☔ ${j.daily.precipitation_probability_max[0]}% · ${tx}</div></div><button class="btn outline" id="openWeather">4 วัน</button></div>`;$('#openWeather').onclick=()=>{document.querySelector('[data-view="moreView"]').click();setTimeout(()=>document.getElementById('weatherBox')?.scrollIntoView({behavior:'smooth'}),80)}}catch{box.innerHTML='Weather โหลดไม่ได้ในตอนนี้'}
 }
 
-// Saved with area filters + Favorite filter.
+// Saved with horizontal chip filters + Favorite filter.
+let savedZoneChip='ทั้งหมด';
+let savedFavOnly=false;
+let savedSearchText='';
 renderSavedV4=function(){
- const q=($('#savedSearch')?.value||'').toLowerCase(); const only=$('#favOnly')?.checked||false; const selected=$('#zoneFilter')?.value||'ทั้งหมด'; const f=favs();
+ const q=savedSearchText.toLowerCase(); const only=savedFavOnly; const selected=savedZoneChip; const f=favs();
  const zones=['ทั้งหมด','Namba / Dotonbori / Shinsaibashi','Umeda / Nakanoshima','Karahori','Osaka Castle / Kyobashi','Shinsekai','Kyoto','Fuji area','Osaka อื่น ๆ','ญี่ปุ่นอื่น ๆ'];
  const spotZone=s=>s.zone_display||'';
  const matchZone=s=>selected==='ทั้งหมด'||(selected==='Kyoto'?s.city==='Kyoto':selected==='Fuji area'?spotZone(s).includes('Fuji'):selected==='ญี่ปุ่นอื่น ๆ'?(!['Osaka','Kyoto'].includes(s.city)&&!spotZone(s).includes('Fuji')):spotZone(s)===selected);
  const spots=DATA.spots.filter(s=>(!q||s.name.toLowerCase().includes(q)||spotZone(s).toLowerCase().includes(q))&&(!only||f.has(s.name))&&matchZone(s)).sort((a,b)=>(f.has(b.name)?1:0)-(f.has(a.name)?1:0));
- $('#savedView').innerHTML=`<div class="section-head"><div><h2>Saved Spots</h2><p>${DATA.spots.length} จุด • ${SYNC_TRIP_ID?'☁️ Favorite sync ร่วมกัน':'★ Favorite ยังเก็บเฉพาะเครื่องนี้'}</p></div></div><div class="card"><input id="savedSearch" placeholder="ค้นหาร้าน / ย่าน" value="${esc(q)}"><select id="zoneFilter" style="margin-top:10px"><option value="ทั้งหมด">ทุกย่าน</option>${zones.slice(1).map(z=>`<option ${selected===z?'selected':''}>${esc(z)}</option>`).join('')}</select><label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="favOnly" type="checkbox" ${only?'checked':''}> แสดงเฉพาะ ★ Favorite</label></div><div class="cards two" style="margin-top:12px">${spots.map(s=>`<article class="card"><div class="fav-row"><div><b>${esc(s.name)}</b><div class="spot-meta">${esc(spotZone(s))} · ${esc(s.type_display)}</div></div>${starButton(s.name)}</div>${MENU_HINT[s.name]?`<p><strong>🍴 เมนูเด่น:</strong> ${esc(MENU_HINT[s.name])}</p>`:''}<div class="actions"><a class="btn outline" target="_blank" rel="noopener" href="${esc(s.google_maps_url)}">↗ Google Maps</a>${V4_COORDS[s.name]?'<span class="badge gray">⌖ Map ready</span>':''}</div></article>`).join('')}</div>`;
- $('#savedSearch').oninput=renderSavedV4;$('#favOnly').onchange=renderSavedV4;$('#zoneFilter').onchange=renderSavedV4;bindFavs();
+ $('#savedView').innerHTML=`<div class="section-head"><div><h2>Saved Spots</h2><p>${DATA.spots.length} จุด • ${SYNC_TRIP_ID?'☁️ Favorite sync ร่วมกัน':'★ Favorite ยังเก็บเฉพาะเครื่องนี้'}</p></div></div><div class="card"><input id="savedSearch" placeholder="ค้นหาร้าน / ย่าน" value="${esc(savedSearchText)}"><div class="filters" id="savedZoneChips">${zones.map(z=>`<button class="chip ${selected===z?'active':''}" data-zone="${esc(z)}">${z==='ทั้งหมด'?'ทุกย่าน':esc(z)}</button>`).join('')}</div><button id="favOnlyChip" class="chip fav-chip ${only?'active':''}">★ Favorite</button></div><div class="cards two" style="margin-top:12px">${spots.map(s=>`<article class="card"><div class="fav-row"><div><b>${esc(s.name)}</b><div class="spot-meta">${esc(spotZone(s))} · ${esc(s.type_display)}</div></div>${starButton(s.name)}</div>${MENU_HINT[s.name]?`<p><strong>🍴 เมนูเด่น:</strong> ${esc(MENU_HINT[s.name])}</p>`:''}<div class="actions"><a class="btn outline" target="_blank" rel="noopener" href="${esc(s.google_maps_url)}">↗ Google Maps</a>${V4_COORDS[s.name]?'<span class="badge gray">⌖ Map ready</span>':''}</div></article>`).join('')}</div>`;
+ $('#savedSearch').oninput=e=>{savedSearchText=e.target.value;renderSavedV4();};
+ $$('#savedZoneChips .chip').forEach(btn=>btn.onclick=()=>{savedZoneChip=btn.dataset.zone;renderSavedV4();});
+ $('#favOnlyChip').onclick=()=>{savedFavOnly=!savedFavOnly;renderSavedV4();};
+ bindFavs();
 }
 renderSaved=renderSavedV4;
+
+
+/* ===== V4.4 FINAL POLISH — local trip photos, no embedded map ===== */
+Object.assign(PHOTO,{
+  kyoto:'images/trip/fushimi-inari.jpg',
+  kamikochi:'images/trip/kamikochi.jpg',
+  shirakawa:'images/trip/shirakawa-go.jpg',
+  osaka:'images/trip/dotonbori.jpg',
+  dotonbori:'images/trip/dotonbori.jpg',
+  kuromon:'images/trip/dotonbori.jpg'
+});
+
+const TRIP_IMAGES={
+  'Kitano Tenmangu Shrine':'images/trip/kitano-tenmangu.jpg',
+  'Fushimi Inari Taisha':'images/trip/fushimi-inari.jpg',
+  'Kamikochi':'images/trip/kamikochi.jpg',
+  'Shirakawa-go':'images/trip/shirakawa-go.jpg',
+  'Hankyu Umeda Main Store':'images/trip/hankyu-umeda.jpg',
+  'Osaka Castle':'images/trip/osaka-castle.jpg',
+  'Shinsaibashi & Dotonbori Area':'images/trip/dotonbori.jpg',
+  'Dotonbori':'images/trip/dotonbori.jpg'
+};
+const TRIP_DETAILS_V44={
+  'Kitano Tenmangu Shrine':TRIP_INFO['Kitano Tenmangu Shrine'],
+  'Fushimi Inari Taisha':TRIP_INFO['Fushimi Inari Taisha'],
+  'Kamikochi':TRIP_INFO['Kamikochi'],
+  'Shirakawa-go':TRIP_INFO['Shirakawa-go'],
+  'Hankyu Umeda Main Store':{about:'ห้างหลักของ Hankyu ในย่าน Umeda เหมาะกับช้อปสินค้าแบรนด์ ญี่ปุ่น ของฝาก และแวะของหวานระหว่างโปรแกรม',photo:'โถงและบรรยากาศย่าน Umeda',eat:'ขนม/เดปาจิกะชั้นอาหาร หรือ HARBS ถ้ามีเวลา',tip:'เวลาทัวร์มีจำกัด จดของที่อยากซื้อไว้ก่อนจะช่วยไม่เสียเวลาเดินหา'},
+  'Osaka Castle':TRIP_INFO['Osaka Castle'],
+  'Shinsaibashi & Dotonbori Area':{about:'โซนช้อปปิ้งและของกินใจกลางโอซาก้า รวม Shinsaibashi-suji และ Dotonbori ซึ่งเป็นจุดเด่นของช่วงเย็น',photo:'Glico sign + คลอง Dotonbori + ป้ายไฟ',eat:'Takoyaki / Okonomiyaki / Kushikatsu',tip:'คนแน่นช่วงเย็น ตั้งจุดนัดหมายกับแฟนไว้ล่วงหน้าและเผื่อเวลาหาทางกลับรถทัวร์'},
+  'Kuromon Ichiba Market':{about:'ตลาดอาหารใจกลางโอซาก้าที่เหมาะกับการเดินกินหลายอย่างเป็น portion เล็ก ๆ ใน Free Day',photo:'ทางเดินตลาดและร้านอาหารทะเล',eat:'Maguro / Sushi / Unagi / Fruit',tip:'อย่าอิ่มร้านแรก แบ่งกันชิมเพื่อเก็บท้องสำหรับ Namba และ Dotonbori'},
+  'Namba Food Crawl':{about:'ช่วงเดินกินรอบ Namba ที่รวมร้านอาหารหลากหลายและเชื่อมไป Dotonbori ได้ง่าย',photo:'ร้านอาหารและถนนรอบ Namba',eat:'Gyukatsu / Tempura / Okonomiyaki',tip:'เลือกมื้อหลักเพียงหนึ่งร้าน แล้วใช้ร้านอื่นเป็น backup ถ้าคิวยาว'},
+  'Namba / Hozenji':{about:'Hozenji Yokocho เป็นตรอกบรรยากาศญี่ปุ่นเก่าใกล้ Namba เหมาะกับเดินย่อยและถ่ายรูปก่อนเข้าสู่ Dotonbori',photo:'ตรอก Hozenji Yokocho และโคมไฟ',eat:'ขนมหรือกาแฟเบา ๆ ก่อนมื้อเย็น',tip:'เป็นช่วงพักขาได้ดี ไม่ต้องรีบเก็บทุกร้าน'},
+  'Dotonbori':TRIP_INFO['Dotonbori']
+};
+
+function tripPlaceDetail(name){
+  const d=TRIP_DETAILS_V44[name]; const img=TRIP_IMAGES[name];
+  if(!d&&!img)return '';
+  return `<div class="place-detail-v44">${img?`<img class="place-photo" src="${img}" alt="${esc(name)}" loading="lazy">`:''}${d?`<div class="place-copy"><p><strong>รู้จักที่นี่:</strong> ${esc(d.about)}</p><div class="detail-grid"><div class="detail-chip">📸 <b>Photo Spot</b><br>${esc(d.photo)}</div><div class="detail-chip">🍴 <b>ลองกิน</b><br>${esc(d.eat)}</div></div><p>💡 ${esc(d.tip)}</p></div>`:''}</div>`;
+}
+
+renderTrip=function(){
+ $('#tripView').innerHTML=`<div class="section-head"><div><h2>Trip Plan</h2><p>โปรแกรมทัวร์ + รายละเอียดสถานที่ • รูปเก็บในเว็บ ไม่ต้องโหลดจากเว็บภายนอก</p></div></div><div class="cards">${DATA.trip.map(d=>`
+ <article class="card day-card">${dayPhoto(d)}<div class="day-head"><div class="day-emoji">${d.emoji}</div><div><span class="badge gray">${d.day} · ${fmtDate(d.date)}</span><h3>${esc(d.title)}</h3><div class="day-meta">${esc(d.city)} · อาหาร ${esc(d.meals)}</div></div></div><p>${esc(d.summary)}</p>
+ <details><summary>ดู Timeline + รายละเอียด</summary><div class="timeline" style="margin-top:14px">${d.items.map(i=>`<div class="timeline-item"><div class="time">${esc(i.time)}</div><h4>${esc(i.name)}</h4><div class="jp">${esc(i.jp)}</div><p>${esc(i.desc)}</p>${tripPlaceDetail(i.name)}<div class="actions"><a class="btn outline" target="_blank" rel="noopener" href="${mapSearch(i.name)}">↗ Google Maps</a></div></div>`).join('')}</div><div class="food-list">${d.food.map(f=>`<span class="food-pill">${esc(f)}</span>`).join('')}</div></details>
+ </article>`).join('')}</div><div class="card photo-source"><b>📷 รูปในหน้า Trip</b><p>ใช้รูปจากเอกสารโปรแกรมทัวร์ที่คุณส่งมาและเก็บเป็นไฟล์ภายในเว็บ เพื่อให้โหลดเสถียรกว่าเดิม</p></div><p class="footer-note">เวลาและลำดับของทัวร์อาจเปลี่ยนตามไกด์ สภาพอากาศ การจราจร และข้อจำกัดรถบัส</p>`;
+}
+
+// Map page was intentionally removed in V4.4. Keep Google Maps buttons only.
+toggleFav=async function(name){
+  const f=favs(),adding=!f.has(name);adding?f.add(name):f.delete(name);CLOUD_FAVS=new Set(f);localStorage.setItem('osakaFavs',JSON.stringify([...f]));renderSavedV4();
+  if(CLOUD_READY&&SYNC_TRIP_ID){
+    setSyncState('☁️ Syncing…');const {error}=await SB.rpc('shared_set_favorite',{p_code:getSharedCode(),p_spot_id:name,p_add:adding});
+    if(error){console.error(error);setSyncState('⚠️ Sync failed');await loadCloudFavorites();renderSavedV4();}else setSyncState('☁️ Synced');
+  }
+};
+
+renderSavedV4=function(){
+ const q=savedSearchText.toLowerCase(); const only=savedFavOnly; const selected=savedZoneChip; const f=favs();
+ const zones=['ทั้งหมด','Namba / Dotonbori / Shinsaibashi','Umeda / Nakanoshima','Karahori','Osaka Castle / Kyobashi','Shinsekai','Kyoto','Fuji area','Osaka อื่น ๆ','ญี่ปุ่นอื่น ๆ'];
+ const spotZone=s=>s.zone_display||'';
+ const matchZone=s=>selected==='ทั้งหมด'||(selected==='Kyoto'?s.city==='Kyoto':selected==='Fuji area'?spotZone(s).includes('Fuji'):selected==='ญี่ปุ่นอื่น ๆ'?(!['Osaka','Kyoto'].includes(s.city)&&!spotZone(s).includes('Fuji')):spotZone(s)===selected);
+ const spots=DATA.spots.filter(s=>(!q||s.name.toLowerCase().includes(q)||spotZone(s).toLowerCase().includes(q))&&(!only||f.has(s.name))&&matchZone(s)).sort((a,b)=>(f.has(b.name)?1:0)-(f.has(a.name)?1:0));
+ $('#savedView').innerHTML=`<div class="section-head"><div><h2>Saved Spots</h2><p>${DATA.spots.length} จุด • ${SYNC_TRIP_ID?'☁️ Favorite sync ร่วมกัน':'★ Favorite ยังเก็บเฉพาะเครื่องนี้'}</p></div></div><div class="card"><input id="savedSearch" placeholder="ค้นหาร้าน / ย่าน" value="${esc(savedSearchText)}"><div class="filters" id="savedZoneChips">${zones.map(z=>`<button class="chip ${selected===z?'active':''}" data-zone="${esc(z)}">${z==='ทั้งหมด'?'ทุกย่าน':esc(z)}</button>`).join('')}</div><button id="favOnlyChip" class="chip fav-chip ${only?'active':''}">★ Favorite</button></div><div class="cards two" style="margin-top:12px">${spots.map(s=>`<article class="card"><div class="fav-row"><div><b>${esc(s.name)}</b><div class="spot-meta">${esc(spotZone(s))} · ${esc(s.type_display)}</div></div>${starButton(s.name)}</div>${MENU_HINT[s.name]?`<p><strong>🍴 เมนูเด่น:</strong> ${esc(MENU_HINT[s.name])}</p>`:''}<div class="actions"><a class="btn outline" target="_blank" rel="noopener" href="${esc(s.google_maps_url)}">↗ Google Maps</a>${s.trip_priority==='High for this trip'?`<button class="btn add-saved-v44" data-name="${esc(s.name)}" data-url="${esc(s.google_maps_url)}">＋ Free Day</button>`:''}</div></article>`).join('')}</div>`;
+ $('#savedSearch').oninput=e=>{savedSearchText=e.target.value;renderSavedV4();};
+ $$('#savedZoneChips .chip').forEach(btn=>btn.onclick=()=>{savedZoneChip=btn.dataset.zone;renderSavedV4();});
+ $('#favOnlyChip').onclick=()=>{savedFavOnly=!savedFavOnly;renderSavedV4();};
+ $$('.add-saved-v44').forEach(b=>b.onclick=()=>{const p=loadPlan();p.push({time:'',name:b.dataset.name,url:b.dataset.url,note:'เพิ่มจาก Saved Spots'});savePlan(p);alert('เพิ่มเข้า Free Day แล้ว');});
+ bindFavs();
+};
+renderSaved=renderSavedV4;
+
+const renderMoreBeforeV44=renderMore;
+renderMore=function(){
+  renderMoreBeforeV44();
+  const cards=$$('#moreView .card');
+  cards.forEach(c=>{
+    if(c.textContent.includes('Photo credits')) c.innerHTML='<h3>📷 Trip photos</h3><p>V4.4 เปลี่ยนรูปหน้า Trip มาใช้ไฟล์จากโปรแกรมทัวร์ที่คุณส่งมาและเก็บไว้ภายในเว็บ จึงไม่ต้องพึ่ง Wikimedia/URL ภายนอกสำหรับรูปหลักอีกแล้ว</p>';
+    if(c.textContent.includes('Food & Travel Toolkit')) c.querySelector('p') && (c.querySelector('p').textContent='V4.4 เน้นความเสถียร: Trip ใช้รูป local, Saved มีตัวกรองย่านแบบปุ่ม, Favorite/Free Day sync ผ่าน Supabase และ Weather อยู่ใน Today + More');
+  });
+};
+
+renderAll=function(){renderHome();loadHomeWeather();renderTrip();renderFree();renderSavedV4();renderPhrase();renderMore();};

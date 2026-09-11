@@ -9,13 +9,12 @@
   <link rel="icon" href="icon-192.png" />
   <link rel="apple-touch-icon" href="icon-192.png" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
   <title>OSAKA Happy Journey 🇯🇵</title>
 </head>
 <body>
   <header class="topbar">
     <div>
-      <p class="eyebrow">V4.2 SYNC • 26 SEP — 1 OCT 2026</p>
+      <p class="eyebrow">V4.4 • SHARED SYNC • 26 SEP — 1 OCT 2026</p>
       <h1>OSAKA Happy Journey <span>🇯🇵</span></h1>
     </div>
     <button id="installBtn" class="ghost hidden">＋ Add to Home</button>
@@ -27,7 +26,6 @@
     <section id="freeView" class="view"></section>
     <section id="savedView" class="view"></section>
     <section id="phraseView" class="view"></section>
-    <section id="mapView" class="view"></section>
     <section id="moreView" class="view"></section>
   </main>
 
@@ -37,7 +35,6 @@
     <button data-view="freeView" class="nav-btn"><span>＋</span><small>Free Day</small></button>
     <button data-view="savedView" class="nav-btn"><span>★</span><small>Saved</small></button>
     <button data-view="phraseView" class="nav-btn"><span>あ</span><small>Japanese</small></button>
-    <button data-view="mapView" class="nav-btn"><span>⌖</span><small>Map</small></button>
     <button data-view="moreView" class="nav-btn"><span>•••</span><small>More</small></button>
   </nav>
 
@@ -52,7 +49,6 @@
     </form>
   </dialog>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
   <script src="app.js" defer></script>
