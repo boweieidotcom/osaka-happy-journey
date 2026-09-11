@@ -141,3 +141,77 @@ function setupPWA(){
  let prompt; window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();prompt=e;$('#installBtn').classList.remove('hidden');}); $('#installBtn').onclick=async()=>{if(prompt){prompt.prompt();await prompt.userChoice;prompt=null;$('#installBtn').classList.add('hidden')}};
 }
 boot();
+
+/* ===== V4 FREE EDITION ===== */
+const V4_COORDS={
+ 'Kuromon Market':[34.6653,135.5067],'Kuromon Ichiba Market':[34.6653,135.5067],'Maguroya Kurogin Kuromon':[34.6650,135.5067],
+ 'Dotonbori':[34.6687,135.5013],'Hozenji Yokocho':[34.6675,135.5023],'Kushikatsu Daruma - Dotombori':[34.6683,135.5025],
+ 'ICHIRAN Dotonbori -South Building-':[34.6684,135.5031],'Tsurutontan Soemoncho':[34.6691,135.5052],
+ 'Gyukatsu Motomura Namba Branch':[34.6659,135.5016],'Tempura Makino Namba':[34.6658,135.5011],'Fukutaro Honten':[34.6647,135.5045],
+ 'Hankyu Umeda Main Store':[34.7027,135.4984],'HARBS in Hankyu Sanban Gai':[34.7053,135.4980],'HARBS Diamor Osaka':[34.7002,135.4973],
+ 'Osaka Castle':[34.6873,135.5262],'Tsutenkaku':[34.6525,135.5063],'Kuchu Teien Observatory':[34.7053,135.4901],
+ 'Fushimi Inari Taisha':[34.9671,135.7727],'Kitano Tenmangu Shrine':[35.0312,135.7351], 'Kamikochi':[36.2499,137.6331], 'Shirakawa-go':[36.2578,136.9062]
+};
+const MENU_HINT={
+ 'Maguroya Kurogin Kuromon':'Chutoro / Otoro / Akami','Kushikatsu Daruma - Dotombori':'Kushikatsu set','Tsurutontan Soemoncho':'Udon ชามใหญ่','Gyukatsu Motomura Namba Branch':'Gyukatsu set','Tempura Makino Namba':'Tempura set','Fukutaro Honten':'Okonomiyaki / Negiyaki','ICHIRAN Dotonbori -South Building-':'Tonkotsu ramen','HARBS in Hankyu Sanban Gai':'Mille Crepes / เค้กตามฤดูกาล','HARBS Diamor Osaka':'Mille Crepes / เค้กตามฤดูกาล','Kuromon Market':'Sushi / seafood / fruit','Dotonbori':'Takoyaki / Okonomiyaki'
+};
+const TRIP_INFO={
+ 'Kitano Tenmangu Shrine':{about:'ศาลเจ้าชินโตสำคัญที่เกี่ยวข้องกับ Sugawara no Michizane และเป็นที่นิยมเรื่องการขอพรด้านการเรียน',photo:'บริเวณประตูและอาคารศาลเจ้า',eat:'ขนมญี่ปุ่นหรือของว่างรอบย่าน Kitano',tip:'ทัวร์เป็นผู้กำหนดเวลาจริง จึงเน้นจุดหลักและกลับรถให้ตรงเวลา'},
+ 'Fushimi Inari Taisha':{about:'ศาลเจ้าอินาริชื่อดังของเกียวโต เส้นทางขึ้นเขามีโทริอิสีส้มแดงหลายพันต้น และรูปสุนัขจิ้งจอกซึ่งเป็นผู้ส่งสารของอินาริ',photo:'Senbon Torii 千本鳥居',eat:'Inari sushi / Yatsuhashi / Matcha sweets',tip:'ไม่จำเป็นต้องเดินขึ้นถึงยอดเขา โดยเฉพาะเมื่อมากับทัวร์และเวลาจำกัด'},
+ 'Kamikochi':{about:'พื้นที่ธรรมชาติบนที่สูงในอุทยานแห่งชาติ Chubu Sangaku มีแม่น้ำ Azusa และวิวเทือกเขา Japan Alps',photo:'Kappa Bridge + Azusa River + Hotaka Peaks',eat:'Gohei-mochi หรือของว่างท้องถิ่นถ้ามีเวลา',tip:'อยู่สูงประมาณ 1,500 ม. อากาศอาจเย็นกว่าเมือง ควรมีเสื้อคลุมและรองเท้าเดินสบาย'},
+ 'Shirakawa-go':{about:'หมู่บ้านประวัติศาสตร์ที่มีบ้านหลังคาทรงกัสโชแบบดั้งเดิม และเป็นหนึ่งในภาพจำสำคัญของภูมิภาคกิฟุ',photo:'บ้าน Gassho-zukuri และวิวหมู่บ้าน',eat:'Hida beef / Gohei-mochi / Hoba miso',tip:'รักษาเวลาเพราะเป็นวันเดินทางหลายจุด และพื้นที่บางส่วนเป็นชุมชนที่มีคนอาศัยจริง'},
+ 'Osaka Castle':{about:'แลนด์มาร์กสำคัญของโอซาก้า โปรแกรมทัวร์ระบุการชมบริเวณด้านนอก',photo:'ตัวปราสาทจากสวนด้านหน้า',eat:'เก็บท้องไว้สำหรับ Shinsaibashi / Dotonbori',tip:'อย่าเผื่อเวลาเข้าพิพิธภัณฑ์ด้านในหากไกด์ไม่ได้รวมไว้ในโปรแกรม'},
+ 'Dotonbori':{about:'ย่านกิน เที่ยว และแสงสียอดนิยมใจกลางโอซาก้า เหมาะกับช่วงเย็นถึงค่ำ',photo:'Glico sign + คลอง Dotonbori',eat:'Takoyaki / Okonomiyaki / Kushikatsu',tip:'คนหนาแน่นช่วงค่ำ นัดจุดเจอกันไว้เผื่อเดินแยก'}
+};
+function favs(){try{return new Set(JSON.parse(localStorage.getItem('osakaFavs')||'[]'))}catch{return new Set()}}
+function toggleFav(name){const f=favs();f.has(name)?f.delete(name):f.add(name);localStorage.setItem('osakaFavs',JSON.stringify([...f]));renderSavedV4(); if(document.querySelector('#mapView.active')) renderMapV4();}
+function starButton(name){return `<button class="star-btn ${favs().has(name)?'on':''}" data-fav="${esc(name)}" title="Favorite">${favs().has(name)?'★':'☆'}</button>`}
+function bindFavs(){document.querySelectorAll('[data-fav]').forEach(b=>b.onclick=()=>toggleFav(b.dataset.fav))}
+
+const oldRenderSaved=renderSaved;
+function renderSavedV4(){
+ const q=($('#savedSearch')?.value||'').toLowerCase(); const only=$('#favOnly')?.checked||false; const f=favs();
+ const spots=DATA.spots.filter(s=>(!q||s.name.toLowerCase().includes(q)||s.zone_display.toLowerCase().includes(q))&&(!only||f.has(s.name)));
+ $('#savedView').innerHTML=`<div class="section-head"><div><h2>Saved Spots</h2><p>${DATA.spots.length} จุดจาก Google Maps • ★ เก็บ Favorite ในเครื่อง</p></div></div><div class="card"><input id="savedSearch" placeholder="ค้นหาร้าน / ย่าน" value="${esc(q)}"><label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="favOnly" type="checkbox" ${only?'checked':''}> แสดงเฉพาะ ★ Favorite</label></div><div class="cards two" style="margin-top:12px">${spots.map(s=>`<article class="card"><div class="fav-row"><div><b>${esc(s.name)}</b><div class="spot-meta">${esc(s.zone_display)} · ${esc(s.type_display)}</div></div>${starButton(s.name)}</div>${MENU_HINT[s.name]?`<p><strong>🍴 เมนูเด่น:</strong> ${esc(MENU_HINT[s.name])}</p>`:''}<div class="actions"><a class="btn outline" target="_blank" rel="noopener" href="${esc(s.google_maps_url)}">↗ Google Maps</a>${V4_COORDS[s.name]?'<span class="badge gray">⌖ Map ready</span>':''}</div></article>`).join('')}</div>`;
+ $('#savedSearch').oninput=renderSavedV4; $('#favOnly').onchange=renderSavedV4; bindFavs();
+}
+renderSaved=renderSavedV4;
+
+function weatherCode(c){if(c===0)return['☀️','ฟ้าใส'];if([1,2,3].includes(c))return['⛅','มีเมฆ'];if([51,53,55,61,63,65,80,81,82].includes(c))return['🌧️','ฝน'];if([71,73,75,77,85,86].includes(c))return['🌨️','หิมะ'];if([95,96,99].includes(c))return['⛈️','พายุ'];return['🌤️','อากาศแปรปรวน']}
+async function loadWeatherV4(){
+ const box=$('#weatherBox'); if(!box)return;
+ const locs=[['Osaka',34.6937,135.5023],['Kyoto',35.0116,135.7681],['Gifu',35.4233,136.7607],['Kamikochi',36.2499,137.6331]];
+ box.innerHTML='<div class="card">กำลังโหลด Weather…</div>';
+ try{
+   const groups=await Promise.all(locs.map(async([n,lat,lon])=>{
+     const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=4`;
+     const j=await fetch(u).then(r=>{if(!r.ok) throw new Error('weather'); return r.json()});
+     const days=j.daily.time.map((date,i)=>{const [ic,tx]=weatherCode(j.daily.weather_code[i]); const label=i===0?'วันนี้':i===1?'พรุ่งนี้':new Intl.DateTimeFormat('th-TH',{weekday:'short',day:'numeric',month:'short'}).format(new Date(date+'T12:00:00+09:00')); return `<div class="wx-day"><div class="wx-day-head"><span>${label}</span><span>${date}</span></div><div class="wx-main"><span class="wx-icon">${ic}</span><div><b>${Math.round(j.daily.temperature_2m_min[i])}–${Math.round(j.daily.temperature_2m_max[i])}°C</b><div>${tx}</div></div><div class="rain">☔ ${j.daily.precipitation_probability_max[i]}%</div></div></div>`}).join('');
+     return `<section class="card weather-location"><div class="weather-loc-head"><div><h3>${n}</h3><p>วันนี้ + ล่วงหน้า 3 วัน</p></div><span class="badge gray">Japan</span></div><div class="wx-days">${days}</div></section>`
+   }));
+   box.innerHTML=`<div class="section-head"><div><h2>Weather ☀️</h2><p>อัปเดตทุกครั้งที่เปิดเว็บ • วันนี้ + ล่วงหน้า 3 วัน • Open-Meteo ฟรี</p></div></div><div class="weather-stack">${groups.join('')}</div><p class="footer-note">พยากรณ์นี้เป็นข้อมูลปัจจุบันของ Osaka / Kyoto / Gifu / Kamikochi ไม่ใช่พยากรณ์วันเดินทางจนกว่าจะเข้าใกล้วันจริง</p>`;
+ }catch(e){box.innerHTML='<div class="warning">โหลด Weather ไม่สำเร็จ ลอง Refresh อีกครั้งเมื่อมีอินเทอร์เน็ต</div>'}
+}
+
+let leafletMap;
+function renderMapV4(){
+ $('#mapView').innerHTML=`<div class="section-head"><div><h2>Map 🗺️</h2><p>OpenStreetMap + Saved Spots ที่มีพิกัด • ฟรี</p></div></div><div class="map-toolbar"><button id="locateMe" class="btn red">⌖ Near Me</button><button id="mapFav" class="btn outline">★ Favorites</button><span class="small-muted">ปุ่ม Directions จะเปิด Google Maps ภายนอก</span></div><div id="leafletMap" class="map-wrap"></div><div id="nearbyResults"></div>`;
+ if(typeof L==='undefined'){ $('#leafletMap').innerHTML='<div class="warning">โหลดแผนที่ไม่ได้ กรุณาเชื่อมต่ออินเทอร์เน็ต</div>';return }
+ leafletMap=L.map('leafletMap').setView([34.6687,135.5013],14); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'}).addTo(leafletMap);
+ const add=(name,coord,kind='Saved')=>L.marker(coord).addTo(leafletMap).bindPopup(`<b>${esc(name)}</b><br>${kind}${MENU_HINT[name]?`<br>🍴 ${esc(MENU_HINT[name])}`:''}<br><a target="_blank" href="${mapSearch(name)}">Google Maps ↗</a>`);
+ DATA.spots.forEach(s=>{if(V4_COORDS[s.name])add(s.name,V4_COORDS[s.name],favs().has(s.name)?'★ Favorite':'Saved')});
+ DATA.trip.flatMap(d=>d.items).forEach(i=>{if(V4_COORDS[i.name]&&!DATA.spots.some(s=>s.name===i.name))add(i.name,V4_COORDS[i.name],'Trip')});
+ $('#locateMe').onclick=()=>navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>showNearby(p.coords.latitude,p.coords.longitude),()=>alert('ไม่สามารถอ่านตำแหน่งได้ กรุณาอนุญาต Location ให้เว็บไซต์')):alert('อุปกรณ์นี้ไม่รองรับ Location');
+ $('#mapFav').onclick=()=>{const pts=DATA.spots.filter(s=>favs().has(s.name)&&V4_COORDS[s.name]).map(s=>V4_COORDS[s.name]);if(pts.length)leafletMap.fitBounds(pts,{padding:[30,30]});else alert('ยังไม่มี Favorite ที่มีพิกัดบนแผนที่')};
+}
+function distKm(a,b,c,d){const R=6371,to=x=>x*Math.PI/180,dl=to(c-a),dn=to(d-b),x=Math.sin(dl/2)**2+Math.cos(to(a))*Math.cos(to(c))*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(x))}
+function showNearby(lat,lon){L.marker([lat,lon]).addTo(leafletMap).bindPopup('คุณอยู่ประมาณนี้').openPopup();leafletMap.setView([lat,lon],15);const list=DATA.spots.filter(s=>V4_COORDS[s.name]).map(s=>({...s,d:distKm(lat,lon,...V4_COORDS[s.name])})).sort((a,b)=>a.d-b.d).slice(0,8);$('#nearbyResults').innerHTML=`<div class="section-head"><div><h3>ร้าน/จุดใกล้คุณ</h3><p>คำนวณระยะเส้นตรงจาก GPS</p></div></div><div class="nearby-grid">${list.map(s=>`<div class="card"><div class="fav-row"><b>${esc(s.name)}</b>${starButton(s.name)}</div><p><strong>📍 ${s.d<1?Math.round(s.d*1000)+' m':s.d.toFixed(1)+' km'}</strong></p>${MENU_HINT[s.name]?`<p>🍴 ${esc(MENU_HINT[s.name])}</p>`:''}<a class="btn outline" target="_blank" href="${esc(s.google_maps_url)}">Directions ↗</a></div>`).join('')}</div>`;bindFavs()}
+
+const oldRenderTrip=renderTrip;
+renderTrip=function(){oldRenderTrip(); document.querySelectorAll('#tripView .timeline-item').forEach(el=>{const name=el.querySelector('h4')?.textContent;const d=TRIP_INFO[name];if(!d)return;el.insertAdjacentHTML('beforeend',`<div class="place-detail"><p><strong>รู้จักที่นี่:</strong> ${esc(d.about)}</p><div class="detail-grid"><div class="detail-chip">📸 <b>Photo Spot</b><br>${esc(d.photo)}</div><div class="detail-chip">🍴 <b>ลองกิน</b><br>${esc(d.eat)}</div></div><p>💡 ${esc(d.tip)}</p></div>`)});}
+
+const oldRenderMore=renderMore;
+renderMore=function(){oldRenderMore();$('#moreView').insertAdjacentHTML('afterbegin','<div id="weatherBox"></div>');loadWeatherV4();}
+
+const oldRenderAll=renderAll;
+renderAll=function(){renderHome();renderTrip();renderFree();renderSavedV4();renderPhrase();renderMapV4();renderMore();}
